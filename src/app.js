@@ -17,9 +17,15 @@ app.use(express.static(path.join(__dirname, "public")));
 /**
  * -------------- ROUTES ----------------
  */
-const routes = require("./routes");
+const homeRoutes = require("./routes/homeRoutes");
+const postRoutes = require("./routes/postRoutes");
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 
-app.use("/", routes);
+app.use("/", homeRoutes);
+// app.use("/post", postRoutes); // Blog post routes
+// app.use("/auth", authRoutes); // Auth-related routes
+// app.use("/user", userRoutes); // User-related routes
 
 /**
  * -------------- Error handling ----------------
