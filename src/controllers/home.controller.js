@@ -1,19 +1,30 @@
-// /controller/home.controller.js
+const axios = require("axios");
 
+// Controller: Logic for rendering the homepage
 const getHomepage = async (req, res, next) => {
   try {
-    // Example: Fetch data from an API or database (placeholder logic)
-    const posts = []; // Replace this with an actual API call or DB query
+    // Make API call to fetch posts
+    const apiUrl = `${process.env.BLOG_API_BASE_URL}/posts`; // Ensure this is in your .env file
+    const response = await axios.get(apiUrl, {
+      params: {
+        page: 1, // First page
+        pageSize: 10, // Limit posts to 10
+      },
+    });
 
+    // Extract posts and metadata from API response
+    const { posts, meta } = response.data;
+
+    // Render the homepage with posts and metadata
     res.render("home", {
       title: "Homepage",
       description: "Welcome to the Blog Viewer!",
-      posts, // Pass the fetched posts to the template
+      posts,
+      meta,
     });
   } catch (error) {
-    // Handle errors gracefully
-    console.error("Error fetching homepage data:", error);
-    next(error); // Pass error to the global error handler
+    console.error("Error fetching posts for homepage:", error);
+    next(error); // Forward to error handling middleware
   }
 };
 

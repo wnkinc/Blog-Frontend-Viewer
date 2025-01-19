@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Blog Viewer</h1>
+      <p><%= description %></p>
+    </header>
+
+    <main>
+      <% if (posts && posts.length > 0) { %>
+      <section>
+        <h2>Recent Posts</h2>
+        <ul>
+          <% posts.forEach(post => { %>
+          <li>
+            <h3><a href="/post/<%= post.slug %>"><%= post.title %></a></h3>
+            <p>
+              By <%= post.author.username %> on <%= new
+              Date(post.createdAt).toLocaleDateString() %>
+            </p>
+            <p><%= post.content.substring(0, 100) %>...</p>
+          </li>
+          <% }); %>
+        </ul>
+      </section>
+      <% } else { %>
+      <p>No posts available at the moment. Check back later!</p>
+      <% } %>
+    </main>
+
+    <footer>
+      <p>&copy; <%= new Date().getFullYear() %> Blog Viewer</p>
+    </footer>
+  </body>
+</html>
