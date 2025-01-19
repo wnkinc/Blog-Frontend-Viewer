@@ -6,6 +6,8 @@
     <title><%= title %></title>
   </head>
   <body>
+    <%- include("partials/navbar") %>
+
     <header>
       <h1><%= post.title %></h1>
       <p>
@@ -20,8 +22,6 @@
       </article>
     </main>
 
-    <footer>
-      <a href="/">Back to Homepage</a>
-    </footer>
+    <%- include("partials/footer") %>
   </body>
 </html>
