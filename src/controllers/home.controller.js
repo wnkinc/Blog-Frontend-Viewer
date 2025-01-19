@@ -1,3 +1,4 @@
+// controllers/home.controller.js
 const axios = require("axios");
 
 /**

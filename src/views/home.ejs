@@ -1,3 +1,4 @@
+<!-- views/home.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,8 +23,11 @@
           <li>
             <h3><a href="/<%= post.slug %>"><%= post.title %></a></h3>
             <p>
-              By <%= post.author.username %> on <%= new
-              Date(post.createdAt).toLocaleDateString() %>
+              By
+              <a href="/user/<%= post.author.id %>"
+                ><%= post.author.username %></a
+              >
+              on <%= new Date(post.createdAt).toLocaleDateString() %>
             </p>
             <p><%= post.content.substring(0, 100) %>...</p>
           </li>
