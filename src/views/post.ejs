@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header>
+      <h1><%= post.title %></h1>
+      <p>
+        By <%= post.author.username %> on <%= new
+        Date(post.createdAt).toLocaleDateString() %>
+      </p>
+    </header>
+
+    <main>
+      <article>
+        <p><%= post.content %></p>
+      </article>
+    </main>
+
+    <footer>
+      <a href="/">Back to Homepage</a>
+    </footer>
+  </body>
+</html>
