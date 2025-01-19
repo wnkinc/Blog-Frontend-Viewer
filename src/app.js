@@ -17,10 +17,10 @@ app.use(express.static(path.join(__dirname, "public")));
 /**
  * -------------- ROUTES ----------------
  */
-const homeRoutes = require("./routes/homeRoutes");
-const postRoutes = require("./routes/postRoutes");
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
+const homeRoutes = require("./routes/home.routes");
+const postRoutes = require("./routes/post.routes");
+const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
 
 app.use("/", homeRoutes);
 // app.use("/post", postRoutes); // Blog post routes
