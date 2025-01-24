@@ -19,13 +19,11 @@ app.use(express.static(path.join(__dirname, "public")));
  */
 const homeRoutes = require("./routes/home.routes");
 const userRoutes = require("./routes/user.routes");
-// const authRoutes = require("./routes/auth.routes");
-// const postRoutes = require("./routes/post.routes");
+const postRoutes = require("./routes/post.routes");
 
 app.use("/", homeRoutes);
 app.use("/user", userRoutes);
-// app.use("/auth", authRoutes);
-// app.use("/post", postRoutes); // Blog post routes
+app.use("/post", postRoutes);
 
 /**
  * -------------- Error handling ----------------
@@ -46,5 +44,5 @@ app.use((err, req, res, next) => {
  */
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Express app - listening on port ${PORT}!`);
+  console.log(`Blog-Frontend-Viewer - listening on port ${PORT}!`);
 });
