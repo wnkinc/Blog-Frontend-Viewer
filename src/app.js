@@ -28,15 +28,23 @@ app.use("/post", postRoutes);
 /**
  * -------------- Error handling ----------------
  */
-// 404 Error Handling
-app.use((req, res, next) => {
-  res.status(404).render("404", { title: "Page Not Found" });
-});
-
-// Global Error Handler
+// Error Handling Middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).render("error", { title: "Server Error", error: err });
+  if (err) {
+    // Log the error stack
+    console.error("Error:", err.stack);
+
+    // Handle 500 (Server Error)
+    res.status(500).render("error", {
+      title: "Server Error",
+      error: err,
+    });
+  } else {
+    // Handle 404 (Page Not Found)
+    res.status(404).render("404", {
+      title: "Page Not Found",
+    });
+  }
 });
 
 /**

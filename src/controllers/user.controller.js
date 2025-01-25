@@ -10,12 +10,11 @@ const getAuthorPage = async (req, res, next) => {
   try {
     const apiUrl = `${process.env.BLOG_API_BASE_URL}/users/${id}/posts`;
     const response = await axios.get(apiUrl);
+    const posts = response.data.data;
 
     if (!response.data.success) {
       return res.status(404).render("404", { title: "User Not Found" });
     }
-
-    const posts = response.data.data;
 
     if (!posts.length) {
       return res.render("author", {
