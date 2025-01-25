@@ -28,7 +28,6 @@ app.use("/post", postRoutes);
 /**
  * -------------- Error handling ----------------
  */
-// Error Handling Middleware
 app.use((err, req, res, next) => {
   if (err) {
     // Log the error stack
