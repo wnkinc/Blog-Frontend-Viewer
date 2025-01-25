@@ -34,13 +34,13 @@ app.use((err, req, res, next) => {
     console.error("Error:", err.stack);
 
     // Handle 500 (Server Error)
-    res.status(500).render("error", {
+    res.status(500).render("partials/error", {
       title: "Server Error",
       error: err,
     });
   } else {
     // Handle 404 (Page Not Found)
-    res.status(404).render("404", {
+    res.status(404).render("partials/404", {
       title: "Page Not Found",
     });
   }
