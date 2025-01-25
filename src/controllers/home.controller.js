@@ -17,8 +17,8 @@ const getHomepage = async (req, res, next) => {
     const { posts, meta } = response.data;
 
     // Render the homepage with posts and metadata
-    res.render("home", {
-      title: "Homepage",
+    res.render("layout", {
+      pageTitle: "Homepage",
       description: "Welcome to the Blog Viewer!",
       posts,
       meta,

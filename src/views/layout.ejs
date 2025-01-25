@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle || "My Dev.to Clone" %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/homePage.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <%- include('partials/header') %>
+
+    <div class="container">
+      <!-- Left Sidebar -->
+      <aside class="sidebar left">
+        <%- include('partials/left-sidebar') %>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="content"><%- include('partials/home') %></main>
+
+      <!-- Right Sidebar -->
+      <aside class="sidebar right">
+        <%- include('partials/right-sidebar') %>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer') %>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
