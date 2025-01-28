@@ -1,0 +1,29 @@
+.sidebar {
+  flex: 1;
+  background: #f4f4f4;
+  padding: 10px;
+}
+
+.content {
+  flex: 3;
+  padding: 10px;
+}
+
+.card {
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card a {
+  margin-right: 5px;
+  color: #007bff;
+  text-decoration: none;
+}
