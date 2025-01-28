@@ -1,9 +1,30 @@
 <header class="header">
   <nav class="navbar">
-    <a href="/" class="logo">MyDevClone</a>
+    <a href="/" class="logo">Tech Trails</a>
     <div class="search-bar">
-      <input type="text" placeholder="Search articles..." />
+      <input
+        type="text"
+        placeholder="Search articles..."
+        aria-label="Search articles"
+        id="searchInput"
+      />
+      <button
+        type="button"
+        class="clear-btn"
+        aria-label="Clear"
+        onclick="clearSearch()"
+      >
+        &times;
+      </button>
     </div>
+    <script>
+      function clearSearch() {
+        const input = document.getElementById("searchInput");
+        input.value = ""; // Clear the input field
+        input.focus(); // Focus back on the input field
+      }
+    </script>
+
     <ul class="nav-links">
       <li><a href="/create">Write a Post</a></li>
       <li>
@@ -15,8 +36,10 @@
       <li>
         <a
           href="https://us-east-1ychprt5hz.auth.us-east-1.amazoncognito.com/signup?client_id=7qkfnqt9m06hugfi6093ksvar5&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Fcallback&response_type=code&scope=email+openid"
-          >Create Account</a
+          class="btn-create-account"
         >
+          Create Account
+        </a>
       </li>
     </ul>
   </nav>
