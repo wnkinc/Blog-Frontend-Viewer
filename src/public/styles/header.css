@@ -1,6 +1,6 @@
 .header {
   background-color: #fff; /* White background */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight lift effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Slight lift effect */
   padding: 10px 20px; /* Adjusted padding for spacing */
   transition: box-shadow 0.3s ease; /* Smooth shadow transition */
 }
@@ -23,6 +23,10 @@
 li a {
   color: #666;
   text-decoration: none;
+}
+
+.nav-links li a:hover {
+  color: #007bff; /* Darker blue on hover */
 }
 
 .search-bar {
