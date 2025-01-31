@@ -17,8 +17,8 @@ const getPostBySlug = async (req, res, next) => {
     }
 
     // Render the post view with the post data
-    res.render("post", {
-      title: post.title,
+    res.render("newpost", {
+      pageTitle: post.title,
       post,
     });
   } catch (error) {

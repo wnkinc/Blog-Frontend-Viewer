@@ -1,0 +1,75 @@
+/* styles/mainpost.css */
+
+.mainpost {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+  word-wrap: break-word;
+}
+
+/* Enforce max width on images */
+.mainpost img {
+  max-width: 100%; /* Ensures image does not exceed the container width */
+  height: auto; /* Maintains aspect ratio */
+  display: block; /* Prevents inline spacing issues */
+  margin: 1rem auto; /* Centers the image */
+}
+
+/* Optional: If the image is inside `.post-content`, make sure it follows the same rule */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.mainpost header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.mainpost h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.mainpost p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.mainpost a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.mainpost a:hover {
+  text-decoration: underline;
+}
+
+.mainpost article {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.mainpost article p {
+  margin-bottom: 1rem;
+}
+
+.mainpost article img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.mainpost article blockquote {
+  border-left: 4px solid #0077ff;
+  padding: 0.5rem 1rem;
+  font-style: italic;
+  color: #444;
+  background: #f9f9f9;
+}

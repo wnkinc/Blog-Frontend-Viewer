@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle || "My Dev.to Clone" %></title>
     <link rel="stylesheet" href="/styles/main.css" />
-    <link rel="stylesheet" href="/styles/homePage.css" />
     <link rel="stylesheet" href="/styles/header.css" />
     <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/mainpost.css" />
   </head>
   <body>
     <!-- Header -->
@@ -16,11 +16,11 @@
     <div class="container">
       <!-- Left Sidebar -->
       <aside class="sidebar left">
-        <%- include('partials/left-sidebar') %>
+        <%- include('partials/left-post-sidebar') %>
       </aside>
 
       <!-- Main Content -->
-      <main class="content"><%- include('partials/home') %></main>
+      <main class="content"><%- include('partials/mainpost') %></main>
     </div>
 
     <!-- Footer -->
