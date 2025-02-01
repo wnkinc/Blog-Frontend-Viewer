@@ -16,6 +16,16 @@
   align-items: center;
 }
 
+.logo {
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.sign-in-link {
+  margin-left: 15px;
+  white-space: nowrap;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -98,4 +108,17 @@ li a {
   border-color: #007bff; /* Keep border same as background */
   text-decoration: underline; /* Underline text */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+@media (min-width: 1350px) {
+  .navbar {
+    justify-content: center; /* All items together in the center */
+    gap: 20px; /* Space between .logo, .search-bar, .nav-links */
+  }
+
+  /* Distribute space more evenly */
+  .search-bar {
+    margin: 0 470px 0 0; /* Each direct child has horizontal spacing */
+    max-width: 500px;
+  }
 }

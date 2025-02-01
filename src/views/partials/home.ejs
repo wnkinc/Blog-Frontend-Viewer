@@ -9,19 +9,45 @@
       />
       <% } %>
     </div>
+
     <div class="post-header">
+      <!-- Profile section -->
+      <div class="post-author">
+        <img
+          src="<%= post.author.profilePicUrl || '/default-profile.png' %>"
+          alt="<%= post.author.username %>'s profile picture"
+          class="profile-pic"
+        />
+        <div class="author-info">
+          <span class="author-name">
+            <a href="/user/<%= post.author.id %>"
+              ><%= post.author.username %></a
+            >
+          </span>
+          <span class="post-date">
+            <%= new Date(post.createdAt).toLocaleDateString() %>
+          </span>
+        </div>
+      </div>
+
       <h2 class="post-title">
         <a href="/post/<%= post.slug %>"><%= post.title %></a>
       </h2>
-      <div class="post-meta">
-        <span class="author">
-          By
-          <a href="/user/<%= post.author.id %>"><%= post.author.username %></a>
-        </span>
-        <span class="date">
-          Published on <%= new Date(post.createdAt).toLocaleDateString() %>
-        </span>
-      </div>
+    </div>
+
+    <!-- New actions area -->
+    <div class="post-actions">
+      <!-- Reaction Link -->
+      <a href="/post/<%= post.slug %>#reactions" class="reaction-link">
+        ❤️
+        <span class="reaction-count"><%= post.reactionsCount || 0 %></span>
+        Reactions
+      </a>
+
+      <!-- Comment link showing number of comments -->
+      <a href="/post/<%= post.slug %>#comments" class="comment-link">
+        💬 <%= post.comments.length %> Comments
+      </a>
     </div>
   </section>
   <% }); %>
