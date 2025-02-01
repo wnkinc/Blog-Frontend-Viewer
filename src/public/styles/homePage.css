@@ -34,7 +34,8 @@
 }
 
 .feed-post .post-header {
-  padding: 20px 32px;
+  padding: 15px 32px;
+  padding-bottom: 0;
 }
 
 /* Adjusting cover image for smaller feed post */
@@ -74,6 +75,7 @@
   height: 40px;
   border-radius: 50%; /* Makes it circular */
   object-fit: cover; /* Ensures image fills without distortion */
+  display: block;
 }
 
 /* Author name styling */
@@ -90,6 +92,62 @@
 .post-date {
   font-size: 0.85rem;
   color: #666;
+}
+
+/* Style for reaction and comment links */
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between reaction and comment links */
+  padding: 10px 32px; /* Align with post-header */
+}
+
+/* Base styles for both reaction & comment links */
+.reaction-link,
+.comment-link {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between emoji & text */
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f5f5f5;
+  padding: 3px 6px;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effects */
+.reaction-link:hover,
+.comment-link:hover {
+  background: #e0e0e0;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Optional: Add an icon scale effect on hover */
+.reaction-link:hover,
+.comment-link:hover {
+  transform: scale(1.1);
+}
+
+/* Add a subtle shadow */
+.reaction-link,
+.comment-link {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust emoji size */
+/* .reaction-link span,
+.comment-link span {
+  font-size: 1.1rem;
+} */
+
+.post-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
 }
 
 @media (min-width: 1350px) {

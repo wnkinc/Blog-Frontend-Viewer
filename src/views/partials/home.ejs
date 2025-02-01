@@ -1,15 +1,18 @@
 <div class="feed">
   <% posts.forEach(post => { %>
   <section class="mainpost feed-post">
-    <div class="post-cover">
-      <% if (post.coverImage) { %>
-      <img
-        src="<%= post.coverImage %>"
-        alt="Cover image for <%= post.title %>"
-      />
-      <% } %>
-    </div>
+    <a href="/post/<%= post.slug %>" class="post-link">
+      <div class="post-cover">
+        <% if (post.coverImage) { %>
+        <img
+          src="<%= post.coverImage %>"
+          alt="Cover image for <%= post.title %>"
+        />
+        <% } %>
+      </div>
+    </a>
 
+    <a href="/post/<%= post.slug %>" class="post-link"></a>
     <div class="post-header">
       <!-- Profile section -->
       <div class="post-author">
@@ -34,19 +37,22 @@
         <a href="/post/<%= post.slug %>"><%= post.title %></a>
       </h2>
     </div>
+  </a>
 
     <!-- New actions area -->
     <div class="post-actions">
       <!-- Reaction Link -->
       <a href="/post/<%= post.slug %>#reactions" class="reaction-link">
-        ❤️
-        <span class="reaction-count"><%= post.reactionsCount || 0 %></span>
-        Reactions
+        <span class="emoji">❤️</span>
+        <span class="count"><%= post.reactionsCount || 0 %></span>
+        <span class="label">Reactions</span>
       </a>
 
-      <!-- Comment link showing number of comments -->
+      <!-- Comment Link -->
       <a href="/post/<%= post.slug %>#comments" class="comment-link">
-        💬 <%= post.comments.length %> Comments
+        <span class="emoji">💬</span>
+        <span class="count"><%= post.comments.length %></span>
+        <span class="label">Comments</span>
       </a>
     </div>
   </section>
