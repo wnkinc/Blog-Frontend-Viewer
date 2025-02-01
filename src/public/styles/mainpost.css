@@ -1,12 +1,30 @@
 /* styles/mainpost.css */
+.content {
+  flex: 1;
+  display: flex;
+}
 
 .mainpost {
+  flex: 1;
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
   font-family: Arial, sans-serif;
   color: #333;
   word-wrap: break-word;
+
+  /* Add border */
+  border: 2px solid #ccc; /* Light gray border */
+
+  /* Add box shadow */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+
+  /* Optional: Add padding & border-radius for a cleaner look */
+  border-radius: 8px;
+  background: #fff; /* Ensure background contrasts with shadow */
+}
+
+.post-header {
+  padding: 32px 48px;
+  padding-bottom: 0;
 }
 
 /* Enforce max width on images */
@@ -14,7 +32,10 @@
   max-width: 100%; /* Ensures image does not exceed the container width */
   height: auto; /* Maintains aspect ratio */
   display: block; /* Prevents inline spacing issues */
-  margin: 1rem auto; /* Centers the image */
+}
+
+.post-content {
+  padding: 32px 48px;
 }
 
 /* Optional: If the image is inside `.post-content`, make sure it follows the same rule */
@@ -23,6 +44,16 @@
   height: auto;
   display: block;
   margin: 1rem auto;
+}
+
+.post-cover img {
+  width: 100%; /* Ensures it scales responsively */
+  max-width: 800px; /* Restricts max width */
+  height: auto; /* Maintains aspect ratio */
+  aspect-ratio: 1000 / 420; /* Ensures a wide aspect ratio */
+  object-fit: cover; /* Crops instead of stretching */
+  display: block; /* Prevents inline spacing */
+  border-radius: 6px 6px 0 0;
 }
 
 .mainpost header {

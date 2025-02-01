@@ -1,15 +1,28 @@
 <div class="feed">
   <% posts.forEach(post => { %>
-  <div class="card">
-    <h2><a href="/post/<%= post.slug %>"><%= post.title %></a></h2>
-    <p>
-      By <a href="/user/<%= post.author.id %>"><%= post.author.username %></a> -
-      <%= new Date(post.createdAt).toLocaleDateString() %>
-    </p>
-    <div class="engagement">
-      <span>❤️ 1 </span>
-      <span>💬 <%= post.comments.length %></span>
+  <section class="mainpost feed-post">
+    <div class="post-cover">
+      <% if (post.coverImage) { %>
+      <img
+        src="<%= post.coverImage %>"
+        alt="Cover image for <%= post.title %>"
+      />
+      <% } %>
     </div>
-  </div>
+    <div class="post-header">
+      <h2 class="post-title">
+        <a href="/post/<%= post.slug %>"><%= post.title %></a>
+      </h2>
+      <div class="post-meta">
+        <span class="author">
+          By
+          <a href="/user/<%= post.author.id %>"><%= post.author.username %></a>
+        </span>
+        <span class="date">
+          Published on <%= new Date(post.createdAt).toLocaleDateString() %>
+        </span>
+      </div>
+    </div>
+  </section>
   <% }); %>
 </div>
