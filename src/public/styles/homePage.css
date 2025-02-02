@@ -8,6 +8,7 @@
   align-self: stretch; /* Ensures it stays aligned in flex container */
   max-height: calc(100vh - 220px); /* Allow full viewport height minus header */
   overflow-y: auto; /* Enables scrolling inside sidebar if needed */
+  max-width: 220px;
 }
 
 .sidebar.right {
@@ -150,19 +151,19 @@
   padding: 0;
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1300px) {
   .container {
     max-width: 1350px;
     align-self: center;
   }
 
   .sidebar.left {
-    min-width: 318px;
+    min-width: 220px;
   }
 
   .sidebar.right {
     display: block;
-    min-width: 300px;
+    min-width: 350px;
     background-color: aqua;
     margin-top: 10px;
   }

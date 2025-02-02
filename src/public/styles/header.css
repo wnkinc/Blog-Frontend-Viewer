@@ -9,9 +9,12 @@
   padding: 10px 20px;
   transition: box-shadow 0.3s ease; /* Smooth shadow transition */
   z-index: 10; /* Higher than default */
+  display: flex;
+  justify-content: center;
 }
 
 .navbar {
+  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,7 +59,7 @@ li a {
   flex-grow: 1;
   max-width: 500px;
   display: flex;
-  align-items: center;
+  margin-right: auto; /* This pushes following items to the right */
 }
 
 .search-bar input {
@@ -117,15 +120,21 @@ li a {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-@media (min-width: 1350px) {
+.logo-search {
+  flex: 1;
+  display: flex;
+}
+
+@media (min-width: 1300px) {
   .navbar {
+    max-width: 1260px;
     justify-content: center; /* All items together in the center */
     gap: 20px; /* Space between .logo, .search-bar, .nav-links */
   }
 
   /* Distribute space more evenly */
   .search-bar {
-    margin: 0 470px 0 0; /* Each direct child has horizontal spacing */
+    margin-right: auto; /* Each direct child has horizontal spacing */
     max-width: 500px;
   }
 }

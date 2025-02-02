@@ -1,22 +1,23 @@
 <header class="header">
   <nav class="navbar">
-    <a href="/" class="logo"> <img src="/imgs/WK.png" alt="WK" /></a>
-
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search articles..."
-        aria-label="Search articles"
-        id="searchInput"
-      />
-      <button
-        type="button"
-        class="clear-btn"
-        aria-label="Clear"
-        onclick="clearSearch()"
-      >
-        &times;
-      </button>
+    <div class="logo-search">
+      <a href="/" class="logo"> <img src="/imgs/WK.png" alt="WK" /></a>
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Search articles..."
+          aria-label="Search articles"
+          id="searchInput"
+        />
+        <button
+          type="button"
+          class="clear-btn"
+          aria-label="Clear"
+          onclick="clearSearch()"
+        >
+          &times;
+        </button>
+      </div>
     </div>
     <script>
       function clearSearch() {
