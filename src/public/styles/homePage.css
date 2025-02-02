@@ -1,4 +1,9 @@
 /* Make the left sidebar sticky */
+.container {
+  margin: 20px;
+  margin-bottom: 0;
+}
+
 .sidebar.left {
   flex: 1;
   background: #f4f4f4;
