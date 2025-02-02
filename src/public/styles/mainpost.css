@@ -1,8 +1,4 @@
 /* styles/mainpost.css */
-.container {
-  align-self: center;
-}
-
 .content {
   flex: 1;
   display: flex;
@@ -14,6 +10,8 @@
   font-family: Arial, sans-serif;
   color: #333;
   word-wrap: break-word;
+
+  margin-top: 15px;
 
   /* Add border */
   border: 2px solid #ccc; /* Light gray border */
@@ -162,4 +160,26 @@
 .sidebar-item:hover::after {
   opacity: 1;
   visibility: visible;
+}
+
+.right-post-section {
+  display: none;
+}
+
+@media (min-width: 1350px) {
+  .container {
+    max-width: 1350px;
+    align-self: center;
+  }
+
+  .mainpost {
+    min-width: 800px;
+  }
+
+  .right-post-section {
+    display: block;
+    min-width: 432px;
+    background-color: aqua;
+    margin-top: 10px;
+  }
 }

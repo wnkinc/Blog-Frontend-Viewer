@@ -22,6 +22,12 @@
   white-space: nowrap;
 }
 
+.logo img {
+  max-height: 34px; /* Adjust based on your design */
+  height: auto;
+  width: auto;
+}
+
 .sign-in-link {
   margin-left: 15px;
   white-space: nowrap;
@@ -48,7 +54,7 @@ li a {
 .search-bar {
   position: relative;
   flex-grow: 1;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   align-items: center;
 }
