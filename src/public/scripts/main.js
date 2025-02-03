@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       width: columnWidth,
       height: columnHeight,
       wireframes: false, // Render as solid shapes (sprites will be used instead)
-      background: "#ffffff",
+      background: "transparent",
     },
   });
   Render.run(render);
@@ -36,32 +36,53 @@ document.addEventListener("DOMContentLoaded", () => {
   Runner.run(runner, engine);
 
   // 4. Create boundaries that exactly match the container's dimensions
-  const leftWall = Bodies.rectangle(10, columnHeight / 2, 20, columnHeight, {
+  const wallOptions = {
     isStatic: true,
-  });
-  const rightWall = Bodies.rectangle(
-    columnWidth - 10,
+    render: { visible: false }, // Hide the walls
+  };
+
+  // Define custom thickness
+  const sideWallThickness = 7; // Thin side walls
+  const topBottomWallThickness = 13; // Thicker top & bottom walls
+
+  const leftWall = Bodies.rectangle(
+    sideWallThickness / 2,
     columnHeight / 2,
-    20,
+    sideWallThickness,
     columnHeight,
-    { isStatic: true }
+    wallOptions
   );
-  const topWall = Bodies.rectangle(columnWidth / 2, 10, columnWidth, 20, {
-    isStatic: true,
-  });
+
+  const rightWall = Bodies.rectangle(
+    columnWidth - sideWallThickness / 2,
+    columnHeight / 2,
+    sideWallThickness,
+    columnHeight,
+    wallOptions
+  );
+
+  const topWall = Bodies.rectangle(
+    columnWidth / 2,
+    topBottomWallThickness / 2,
+    columnWidth,
+    topBottomWallThickness,
+    wallOptions
+  );
+
   const bottomWall = Bodies.rectangle(
     columnWidth / 2,
-    columnHeight - 10,
+    columnHeight - topBottomWallThickness / 2,
     columnWidth,
-    20,
-    { isStatic: true }
+    topBottomWallThickness,
+    wallOptions
   );
+
   Composite.add(engine.world, [leftWall, rightWall, topWall, bottomWall]);
 
   // 5. Balloon creation: continually maintain up to maxBalloons.
   // When a balloon is popped, the count is decremented, and a new one can be added.
   let balloonCount = 0;
-  const maxBalloons = 10;
+  const maxBalloons = 15;
 
   // Utility function: Returns a random sprite from the available options.
   function randomSprite() {
@@ -91,22 +112,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }, expansionInterval);
   }
 
-  // Every 2 seconds, if there are fewer than maxBalloons, add a new balloon.
-  setInterval(() => {
+  // Function to add a new balloon
+  function addBalloon() {
     if (balloonCount < maxBalloons) {
-      // Use a horizontal margin so they don't start too close to the walls.
-      const margin = 40;
+      const margin = 80;
       const x = Math.random() * (columnWidth - 2 * margin) + margin;
       const y = columnHeight - 50; // Start near the bottom
 
-      // Create a new balloon with a physics radius of 40,
-      // and use a random sprite.
       const balloon = Bodies.circle(x, y, 40, {
         label: "balloon",
-        restitution: 1, // bounciness
+        restitution: 1, // Bounciness
         render: {
           sprite: {
-            texture: randomSprite(), // randomly choose from "10.png", "11.png", "12.png"
+            texture: randomSprite(), // Choose from "10.png", "11.png", "12.png"
             xScale: 0.065,
             yScale: 0.065,
           },
@@ -116,7 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
       Composite.add(engine.world, balloon);
       balloonCount++;
     }
-  }, 5000);
+  }
+
+  // Spawn the first balloon immediately
+  addBalloon();
+
+  // Continue spawning balloons every 5 seconds
+  setInterval(addBalloon, 5000);
 
   // 7. Add a click event listener so that clicking a balloon "pops" it with an expansion effect.
   render.canvas.addEventListener("click", (event) => {

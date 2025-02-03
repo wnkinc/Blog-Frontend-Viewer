@@ -181,7 +181,8 @@
     top: 0; /* Adjust as needed to position it correctly */
     left: 50%; /* Center it horizontally */
     transform: translateX(-50%); /* Ensure it's truly centered */
-    width: 350px; /* Keep its original width */
+    width: 360px; /* Keep its original width */
+    pointer-events: none;
   }
 
   #balloon-column {
