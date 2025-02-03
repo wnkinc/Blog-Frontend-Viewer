@@ -169,7 +169,6 @@
   .sidebar.right {
     display: block;
     min-width: 350px;
-    background-color: aqua;
     margin-top: 10px;
 
     display: flex; /* Allows child elements (like #balloon-column) to stretch */
@@ -186,7 +185,6 @@
   }
 
   #balloon-column {
-    background-color: purple;
     flex-grow: 1;
   }
 }
