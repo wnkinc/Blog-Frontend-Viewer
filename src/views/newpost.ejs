@@ -20,13 +20,16 @@
       <!-- Main Content -->
       <main class="content"><%- include('partials/mainpost') %></main>
 
-      <!-- Right Sidebar -->
-      <%- include('partials/right-post-sidebar') %>
+      <aside class="sidebar right">
+        <%- include('partials/right-post-sidebar') %>
+      </aside>
     </div>
 
     <!-- Footer -->
     <%- include('partials/footer') %>
 
-    <script type="module" src="/scripts/main.js"></script>
+    <!-- Load Matter.js from a CDN -->
+    <script src="https://unpkg.com/matter-js@0.19.0/build/matter.min.js"></script>
+    <script defer src="/scripts/mainpost.js"></script>
   </body>
 </html>

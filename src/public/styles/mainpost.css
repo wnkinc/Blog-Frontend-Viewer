@@ -167,7 +167,7 @@
   visibility: visible;
 }
 
-.right-post-section {
+.sidebar.right {
   display: none;
 }
 
@@ -176,13 +176,26 @@
     align-self: center;
   }
 
-  .right-post-section {
-    margin: 10px;
+  .sidebar.right {
     display: block;
     min-width: 350px;
-    background-color: aqua;
-    margin-top: 36px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+
+    display: flex; /* Allows child elements (like #balloon-column) to stretch */
+    flex-direction: column;
+    position: relative;
+  }
+
+  .sidebar.right img {
+    position: absolute; /* Removes from document flow, so it doesn’t take space */
+    top: 0; /* Adjust as needed to position it correctly */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Ensure it's truly centered */
+    width: 360px; /* Keep its original width */
+    pointer-events: none;
+  }
+
+  #balloon-column {
+    flex-grow: 1;
   }
 }
