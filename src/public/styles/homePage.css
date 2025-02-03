@@ -6,7 +6,7 @@
 
 .sidebar.left {
   flex: 1;
-  background: #f4f4f4;
+  background: transparent;
   padding: 10px;
   position: sticky;
   top: 70px; /* Adjust to match the header height */
@@ -40,7 +40,7 @@
 }
 
 .feed-post .post-header {
-  padding: 15px 32px;
+  padding: 15px 15px;
   padding-bottom: 0;
 }
 
@@ -59,6 +59,13 @@
 .feed-post .post-title {
   font-size: 2rem;
   margin: 0.3rem;
+  margin-left: 48px;
+}
+
+.author-name a,
+.post-title a {
+  text-decoration: none;
+  color: #000;
 }
 
 /* Post meta info */
@@ -103,9 +110,11 @@
 /* Style for reaction and comment links */
 .post-actions {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 15px; /* Space between reaction and comment links */
   padding: 10px 32px; /* Align with post-header */
+  margin-left: 36px;
 }
 
 /* Base styles for both reaction & comment links */
@@ -116,31 +125,37 @@
   gap: 5px; /* Space between emoji & text */
   text-decoration: none;
   font-size: 0.9rem;
-  color: #666;
-  background: #f5f5f5;
+  color: #333;
+  background: #fff;
   padding: 3px 6px;
-  border-radius: 20px;
-  transition: all 0.2s ease-in-out;
+  border-radius: 7px;
+  transition: transform 0.2s ease-in-out;
 }
 
 /* Hover effects */
 .reaction-link:hover,
 .comment-link:hover {
-  background: #e0e0e0;
+  background: #2779a7;
   color: #333;
   text-decoration: none;
-}
-
-/* Optional: Add an icon scale effect on hover */
-.reaction-link:hover,
-.comment-link:hover {
   transform: scale(1.1);
 }
 
-/* Add a subtle shadow */
-.reaction-link,
-.comment-link {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+.reactions-comments {
+  display: flex;
+}
+
+.mins-read {
+  margin: 0;
+  margin-right: 15px;
+  font-size: 0.85rem;
+  color: #666;
+  align-self: flex-end;
+}
+
+.read-time {
+  display: flex;
+  align-items: flex-end;
 }
 
 /* Adjust emoji size */
@@ -154,6 +169,17 @@
   text-decoration: none;
   color: inherit;
   padding: 0;
+}
+
+.sidebar-icon {
+  width: 18px;
+  height: 18px;
+  fill: none !important;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: color 0.2s ease-in-out;
 }
 
 @media (min-width: 1300px) {
