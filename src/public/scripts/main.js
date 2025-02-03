@@ -35,6 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const runner = Runner.create();
   Runner.run(runner, engine);
 
+  // Pause Matter.js when the user switches tabs, and resume when they return
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      Runner.stop(runner); // Stop Matter.js engine
+      clearInterval(balloonInterval); // Pause balloon spawning
+      balloonInterval = null; // Ensure no duplicate intervals start
+    } else {
+      Runner.run(runner, engine); // Resume Matter.js engine
+      if (!balloonInterval) {
+        balloonInterval = setInterval(addBalloon, 8000); // Restart interval
+      }
+    }
+  });
+
   // 4. Create boundaries that exactly match the container's dimensions
   const wallOptions = {
     isStatic: true,
@@ -43,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Define custom thickness
   const sideWallThickness = 7; // Thin side walls
-  const topBottomWallThickness = 13; // Thicker top & bottom walls
+  const topBottomWallThickness = 14; // Thicker top & bottom walls
 
   const leftWall = Bodies.rectangle(
     sideWallThickness / 2,
@@ -80,9 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
   Composite.add(engine.world, [leftWall, rightWall, topWall, bottomWall]);
 
   // 5. Balloon creation: continually maintain up to maxBalloons.
-  // When a balloon is popped, the count is decremented, and a new one can be added.
-  let balloonCount = 0;
+  // We'll use the `balloons` array as the single source of truth.
   const maxBalloons = 15;
+  const balloons = []; // Array to track balloons
 
   // Utility function: Returns a random sprite from the available options.
   function randomSprite() {
@@ -95,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const expansionSteps = 5;
     const finalExpansionFactor = 1.5; // final size is 150% of original
     const expansionInterval = 10; // ms per step
-    // Calculate the per-step scale factor (so that after expansionSteps, the total scale is finalExpansionFactor)
+    // Calculate the per-step scale factor so that after expansionSteps, the total scale is finalExpansionFactor
     const stepScale = Math.pow(finalExpansionFactor, 1 / expansionSteps);
     let steps = 0;
     const intervalId = setInterval(() => {
@@ -105,53 +119,62 @@ document.addEventListener("DOMContentLoaded", () => {
         steps++;
       } else {
         clearInterval(intervalId);
-        // Remove the balloon after expansion
         Composite.remove(engine.world, balloon);
-        balloonCount = Math.max(balloonCount - 1, 0);
       }
     }, expansionInterval);
   }
 
-  // Function to add a new balloon
+  // Function to add a new balloon.
   function addBalloon() {
-    if (balloonCount < maxBalloons) {
-      const margin = 80;
-      const x = Math.random() * (columnWidth - 2 * margin) + margin;
-      const y = columnHeight - 50; // Start near the bottom
+    // If we have reached or exceeded the max, pop the oldest.
+    if (balloons.length >= maxBalloons) {
+      popOldestBalloon();
+    }
 
-      const balloon = Bodies.circle(x, y, 40, {
-        label: "balloon",
-        restitution: 1, // Bounciness
-        render: {
-          sprite: {
-            texture: randomSprite(), // Choose from "10.png", "11.png", "12.png"
-            xScale: 0.065,
-            yScale: 0.065,
-          },
+    const margin = 80;
+    const x = Math.random() * (columnWidth - 2 * margin) + margin;
+    const y = columnHeight - 50; // Start near the bottom
+
+    const balloon = Bodies.circle(x, y, 40, {
+      label: "balloon",
+      restitution: 1, // Bounciness
+      render: {
+        sprite: {
+          texture: randomSprite(), // Choose from "10.png", "11.png", "12.png"
+          xScale: 0.065,
+          yScale: 0.065,
         },
-      });
+      },
+    });
 
-      Composite.add(engine.world, balloon);
-      balloonCount++;
+    Composite.add(engine.world, balloon);
+    balloons.push(balloon);
+  }
+
+  // Function to remove (pop) the oldest balloon
+  function popOldestBalloon() {
+    if (balloons.length > 0) {
+      const oldestBalloon = balloons.shift(); // Remove the first balloon from the array
+      popBalloon(oldestBalloon);
     }
   }
 
   // Spawn the first balloon immediately
   addBalloon();
 
-  // Continue spawning balloons every 5 seconds
-  setInterval(addBalloon, 5000);
+  // Continue spawning balloons every 8 seconds
+  let balloonInterval = setInterval(addBalloon, 8000);
 
   // 7. Add a click event listener so that clicking a balloon "pops" it with an expansion effect.
   render.canvas.addEventListener("click", (event) => {
-    // Determine mouse position relative to the canvas
+    // Determine mouse position relative to the canvas.
     const rect = render.canvas.getBoundingClientRect();
     const mousePosition = {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
     };
 
-    // Query all bodies for those containing the click position
+    // Query all bodies for those containing the click position.
     const allBodies = Composite.allBodies(engine.world);
     const clickedBodies = Query.point(allBodies, mousePosition);
 
@@ -159,6 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
     clickedBodies.forEach((body) => {
       if (body.label === "balloon") {
         popBalloon(body);
+
+        // Remove the popped balloon from the balloons array.
+        const index = balloons.indexOf(body);
+        if (index !== -1) {
+          balloons.splice(index, 1);
+        }
       }
     });
   });
