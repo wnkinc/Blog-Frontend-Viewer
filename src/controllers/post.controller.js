@@ -16,10 +16,14 @@ const getPostBySlug = async (req, res, next) => {
       return res.status(404).render("404", { title: "Post Not Found" });
     }
 
+    const user = "me";
+    const comments = [];
     // Render the post view with the post data
     res.render("newpost", {
       pageTitle: post.title,
       post,
+      comments,
+      user,
     });
   } catch (error) {
     console.error("Error fetching post by slug:", error);

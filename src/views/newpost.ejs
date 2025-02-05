@@ -18,7 +18,9 @@
       <%- include('partials/left-post-sidebar') %>
 
       <!-- Main Content -->
-      <main class="content"><%- include('partials/mainpost') %></main>
+      <main class="content">
+        <%- include('partials/mainpost') %><%- include('partials/comments') %>
+      </main>
 
       <aside class="sidebar right">
         <%- include('partials/right-post-sidebar') %>

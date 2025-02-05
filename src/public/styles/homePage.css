@@ -136,7 +136,7 @@
 .reaction-link:hover,
 .comment-link:hover {
   background: #2779a7;
-  color: #333;
+  color: #fff;
   text-decoration: none;
   transform: scale(1.1);
 }
