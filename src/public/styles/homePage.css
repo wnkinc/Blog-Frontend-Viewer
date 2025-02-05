@@ -84,8 +84,8 @@
 
 /* Circular profile picture */
 .profile-pic {
-  width: 40px; /* Adjust as needed */
-  height: 40px;
+  width: 30px; /* Adjust as needed */
+  height: 30px;
   border-radius: 50%; /* Makes it circular */
   object-fit: cover; /* Ensures image fills without distortion */
   display: block;
