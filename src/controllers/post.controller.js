@@ -16,14 +16,18 @@ const getPostBySlug = async (req, res, next) => {
       return res.status(404).render("404", { title: "Post Not Found" });
     }
 
-    const user = "me";
-    const comments = [];
+    const comments = post.comments || []; // Ensure comments are included
+
+    // Ensure replies are properly structured within comments
+    comments.forEach((comment) => {
+      comment.replies = comment.replies || []; // Ensure replies exist
+    });
+
     // Render the post view with the post data
     res.render("newpost", {
       pageTitle: post.title,
       post,
-      comments,
-      user,
+      comments, // Now includes replies
     });
   } catch (error) {
     console.error("Error fetching post by slug:", error);
@@ -31,6 +35,12 @@ const getPostBySlug = async (req, res, next) => {
   }
 };
 
+/**
+ * -------------- POST comment ----------------
+ */
+const postComment = async (req, res, next) => {};
+
 module.exports = {
   getPostBySlug,
+  postComment,
 };

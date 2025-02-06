@@ -15,7 +15,7 @@
         />
       <form
         class="comment-form"
-        action="/posts/<%= post.id %>/comments"
+        action="/post/<%= post.slug %>/comments"
         method="POST"
       >
         <textarea
@@ -30,29 +30,29 @@
 
     <!-- Display Comments -->
     <div class="comments-container">
-      <% if (comments && comments.length > 0) { %>
-      <ul class="comments-list">
-        <% comments.forEach(function(comment) { %>
-        <li class="comment">
-          <div class="comment-header">
-            <!-- Adjust the author property as needed -->
-            <span class="comment-author"
-              ><%= comment.author.username || comment.author.name %></span
-            >
-            <!-- Format the date; ensure `createdAt` exists on your comment -->
-            <span class="comment-date"
-              ><%= new Date(comment.createdAt).toLocaleString() %></span
-            >
-          </div>
-          <div class="comment-body">
-            <p><%= comment.body %></p>
-          </div>
-        </li>
-        <% }); %>
-      </ul>
-      <% } else { %>
-      <p class="no-comments">No comments yet. Be the first to comment!</p>
-      <% } %>
-    </div>
+        <% if (comments.length > 0) { %>
+          <ul>
+            <% comments.forEach(comment => { %>
+              <li>
+                <p><strong><%= comment.user.username %></strong>: <%= comment.content %></p>
+                
+                <% if (comment.replies.length > 0) { %>
+                  <ul>
+                    <% comment.replies.forEach(reply => { %>
+                      <li>
+                        <p><strong><%= reply.user.username %></strong>: <%= reply.content %></p>
+                      </li>
+                    <% }) %>
+                  </ul>
+                <% } %>
+      
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <p>No comments yet.</p>
+        <% } %>
+      </div>
+      
   </section>
 </section>
