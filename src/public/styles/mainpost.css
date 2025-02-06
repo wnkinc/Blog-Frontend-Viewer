@@ -231,7 +231,8 @@ li a {
   padding: 0;
 }
 
-.profilepic-comment {
+.profilepic-comment,
+.profilepic-reply {
   display: flex;
   gap: 10px;
 }
@@ -305,15 +306,17 @@ li a {
 }
 
 .replies-list {
+  padding-left: 30px;
   list-style: none;
-  padding-left: 50px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .comment.reply {
-  background: #eef2ff;
-  border-left: 3px solid #007bff;
-  padding-left: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #f6f4f4;
 }
 
 .left-post-sidebar {

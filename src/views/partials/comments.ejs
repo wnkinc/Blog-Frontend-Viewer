@@ -118,17 +118,18 @@
             </form>
           </div>
         </div>
-
-        <% if (comment.replies.length > 0) { %>
-        <ul class="replies-list">
-          <% comment.replies.forEach(reply => { %>
+      </div>
+      <% if (comment.replies.length > 0) { %>
+      <ul class="replies-list">
+        <% comment.replies.forEach(reply => { %>
+        <div class="profilepic-reply">
+          <img
+            src="<%= reply.user && reply.user.profilePic ? reply.user.profilePic : '/default-profile.png' %>"
+            alt="Profile Picture"
+            class="comment-profile-pic"
+          />
           <li class="comment reply">
             <div class="comment-header">
-              <img
-                src="<%= reply.user && reply.user.profilePic ? reply.user.profilePic : '/default-profile.png' %>"
-                alt="Profile Picture"
-                class="comment-profile-pic"
-              />
               <div class="comment-info">
                 <span class="comment-username">
                   <% if (reply.user) { %> <%= reply.user.username %> <% } else {
@@ -142,11 +143,10 @@
             </div>
             <p class="comment-content"><%= reply.content %></p>
           </li>
-          <% }) %>
-        </ul>
-        <% } %>
-      </div>
-      <% }) %>
+        </div>
+        <% }) %>
+      </ul>
+      <% } %> <% }) %>
     </ul>
     <% } else { %>
     <p>No comments yet.</p>

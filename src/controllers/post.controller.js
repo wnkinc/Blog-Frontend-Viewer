@@ -16,18 +16,23 @@ const getPostBySlug = async (req, res, next) => {
       return res.status(404).render("404", { title: "Post Not Found" });
     }
 
-    const comments = post.comments || []; // Ensure comments are included
+    // Filter out top-level comments
+    const topLevelComments = post.comments.filter(
+      (comment) => !comment.parentId
+    );
 
-    // Ensure replies are properly structured within comments
-    comments.forEach((comment) => {
-      comment.replies = comment.replies || []; // Ensure replies exist
+    // Ensure replies are attached correctly
+    topLevelComments.forEach((comment) => {
+      comment.replies = post.comments.filter(
+        (reply) => reply.parentId === comment.id
+      );
     });
 
     // Render the post view with the post data
     res.render("newpost", {
       pageTitle: post.title,
       post,
-      comments, // Now includes replies
+      comments: topLevelComments, // Now includes replies
     });
   } catch (error) {
     console.error("Error fetching post by slug:", error);
@@ -61,7 +66,26 @@ const postComment = async (req, res, next) => {
 /**
  * -------------- POST reply ----------------
  */
-const postReply = async (req, res, next) => {};
+const postReply = async (req, res, next) => {
+  const { slug } = req.params; // Get post slug from URL
+  const { reply, commentId } = req.body; // Get reply content and comment ID from form
+
+  try {
+    const apiUrl = `${process.env.BLOG_API_BASE_URL}/comments/${slug}/reply`;
+
+    // Send data to backend API
+    await axios.post(apiUrl, {
+      content: reply, // Reply text
+      commentId, // ID of the comment being replied to
+    });
+
+    // Redirect back to the post page @ replies section
+    res.redirect(`/post/${slug}#comments`);
+  } catch (error) {
+    console.error("Error posting reply:", error);
+    next(error); // Forward to error handling middleware
+  }
+};
 
 module.exports = {
   getPostBySlug,
