@@ -4,9 +4,11 @@ const router = express.Router();
 const {
   getPostBySlug,
   postComment,
+  postReply,
 } = require("../controllers/post.controller");
 
 router.get("/:slug", getPostBySlug);
 router.post("/:slug/comment", postComment);
+router.post("/:slug/reply", postReply);
 
 module.exports = router;

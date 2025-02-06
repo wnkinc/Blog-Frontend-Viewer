@@ -1,74 +1,175 @@
 <!-- File: views/partials/comments.ejs -->
 <section class="comments-section">
-    <!-- Comments Header with Subscribe Button -->
-    <div class="comments-header">
-      <h2>Comments</h2>
-      <button class="subscribe-button">Subscribe</button>
-    </div>
+  <!-- Comments Header with Subscribe Button -->
+  <div class="comments-header">
+    <h2>Comments</h2>
+    <button class="subscribe-button">Subscribe</button>
+  </div>
 
-    <!-- Comment Submission Form -->
-    <div class="comment-form-container">
+  <!-- Comment Submission Form -->
+  <div class="comment-form-container">
+    <img
+      src="<%= post.author.profilePicUrl || '/default-profile.png' %>"
+      alt="<%= post.author.username %>'s profile picture"
+      class="profile-pic"
+    />
+    <form
+      class="comment-form"
+      action="/post/<%= post.slug %>/comment"
+      method="POST"
+    >
+      <textarea
+        name="comment"
+        rows="2"
+        placeholder="Write your comment here..."
+        required
+      ></textarea>
+      <button type="submit">Submit Comment</button>
+    </form>
+  </div>
+
+  <!-- Display Comments -->
+  <div class="comments-container" id="comments">
+    <% if (comments.length > 0) { %>
+    <ul class="comments-list">
+      <% comments.forEach(comment => { %>
+      <div class="profilepic-comment">
         <img
-          src="<%= post.author.profilePicUrl || '/default-profile.png' %>"
-          alt="<%= post.author.username %>'s profile picture"
-          class="profile-pic"
+          src="<%= comment.user && comment.user.profilePic ? comment.user.profilePic : '/default-profile.png' %>"
+          alt="Profile Picture"
+          class="comment-profile-pic"
         />
-      <form
-        class="comment-form"
-        action="/post/<%= post.slug %>/comment"
-        method="POST"
-      >
-        <textarea
-          name="comment"
-          rows="2"
-          placeholder="Write your comment here..."
-          required
-        ></textarea>
-        <button type="submit">Submit Comment</button>
-      </form>
-    </div>
+        <div class="comment-comment">
+          <li class="comment">
+            <!-- Comment Header -->
+            <div class="comment-header">
+              <span class="comment-username">
+                <% if (comment.user) { %> <%= comment.user.username %> <% } else
+                { %> Anonymous <% } %>
+              </span>
+              <span class="comment-date"
+                >- <%= new Date(comment.createdAt).toLocaleDateString("en-US", {
+                month: "short", day: "numeric" }) %>
+              </span>
+            </div>
+            <!-- Comment Content -->
+            <pre class="comment-content"><%= comment.content %></pre>
+          </li>
+          <div class="reactions-comments">
+            <a href="/post/<%= post.slug %>#reactions" class="reaction-link">
+              <span class="emoji">
+                <svg
+                  class="sidebar-icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  />
+                </svg>
+              </span>
+              <span class="count"><%= post.reactionsCount || 0 %></span>Likes
+            </a>
+            <!-- Reply Button -->
+            <a
+              href="javascript:void(0);"
+              class="reply-toggle"
+              data-comment-id="<%= comment.id %>"
+            >
+              <span class="emoji">
+                <svg
+                  class="sidebar-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="count"><%= comment.replies.length %></span>Replies
+            </a>
+          </div>
 
-    <!-- Display Comments -->
-    <div class="comments-container" id="comments">
-        <% if (comments.length > 0) { %>
-          <ul>
-            <% comments.forEach(comment => { %>
-                <li>
-                  <p>
-                    <strong>
-                      <% if (comment.user) { %>
-                        <%= comment.user.username %>
-                      <% } else { %>
-                        Anonymous
-                      <% } %>
-                    </strong>: <%= comment.content %>
-                  </p>
-              
-                  <% if (comment.replies.length > 0) { %>
-                    <ul>
-                      <% comment.replies.forEach(reply => { %>
-                        <li>
-                          <p>
-                            <strong>
-                              <% if (reply.user) { %>
-                                <%= reply.user.username %>
-                              <% } else { %>
-                                Anonymous
-                              <% } %>
-                            </strong>: <%= reply.content %>
-                          </p>
-                        </li>
-                      <% }) %>
-                    </ul>
-                  <% } %>
-                </li>
-              <% }) %>
-              
-          </ul>
-        <% } else { %>
-          <p>No comments yet.</p>
+          <!-- Hidden Reply Form -->
+          <div
+            class="reply-form-container"
+            id="reply-form-<%= comment.id %>"
+            style="display: none"
+          >
+            <form
+              class="reply-form"
+              action="/post/<%= post.slug %>/reply"
+              method="POST"
+            >
+              <input type="hidden" name="commentId" value="<%= comment.id %>" />
+              <textarea
+                name="reply"
+                rows="2"
+                placeholder="Write your reply..."
+                required
+              ></textarea>
+              <button type="submit">Submit Reply</button>
+            </form>
+          </div>
+        </div>
+
+        <% if (comment.replies.length > 0) { %>
+        <ul class="replies-list">
+          <% comment.replies.forEach(reply => { %>
+          <li class="comment reply">
+            <div class="comment-header">
+              <img
+                src="<%= reply.user && reply.user.profilePic ? reply.user.profilePic : '/default-profile.png' %>"
+                alt="Profile Picture"
+                class="comment-profile-pic"
+              />
+              <div class="comment-info">
+                <span class="comment-username">
+                  <% if (reply.user) { %> <%= reply.user.username %> <% } else {
+                  %> Anonymous <% } %>
+                </span>
+                <span class="comment-date">
+                  <%= new Date(reply.createdAt).toLocaleDateString("en-US", {
+                  month: "short", day: "numeric" }) %>
+                </span>
+              </div>
+            </div>
+            <p class="comment-content"><%= reply.content %></p>
+          </li>
+          <% }) %>
+        </ul>
         <% } %>
       </div>
-      
-  </section>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No comments yet.</p>
+    <% } %>
+  </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".reply-toggle").forEach((button) => {
+      button.addEventListener("click", function () {
+        const commentId = this.getAttribute("data-comment-id");
+        const replyForm = document.getElementById(`reply-form-${commentId}`);
+
+        if (
+          replyForm.style.display === "none" ||
+          replyForm.style.display === ""
+        ) {
+          replyForm.style.display = "block";
+        } else {
+          replyForm.style.display = "none";
+        }
+      });
+    });
+  });
+</script>

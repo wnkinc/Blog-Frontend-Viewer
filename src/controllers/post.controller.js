@@ -58,7 +58,13 @@ const postComment = async (req, res, next) => {
   }
 };
 
+/**
+ * -------------- POST reply ----------------
+ */
+const postReply = async (req, res, next) => {};
+
 module.exports = {
   getPostBySlug,
   postComment,
+  postReply,
 };
