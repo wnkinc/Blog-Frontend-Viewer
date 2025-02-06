@@ -38,7 +38,25 @@ const getPostBySlug = async (req, res, next) => {
 /**
  * -------------- POST comment ----------------
  */
-const postComment = async (req, res, next) => {};
+const postComment = async (req, res, next) => {
+  const { slug } = req.params; // Get post slug from URL
+  const { comment } = req.body; // Get comment content from form
+
+  try {
+    const apiUrl = `${process.env.BLOG_API_BASE_URL}/comments/${slug}`;
+
+    // Send data to backend API
+    await axios.post(apiUrl, {
+      content: comment, // Comment text
+    });
+
+    // Redirect back to the post page @ comments
+    res.redirect(`/post/${slug}#comments`);
+  } catch (error) {
+    console.error("Error posting comment:", error);
+    next(error); // Forward to error handling middleware
+  }
+};
 
 module.exports = {
   getPostBySlug,

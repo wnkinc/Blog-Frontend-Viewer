@@ -15,7 +15,7 @@
         />
       <form
         class="comment-form"
-        action="/post/<%= post.slug %>/comments"
+        action="/post/<%= post.slug %>/comment"
         method="POST"
       >
         <textarea
@@ -29,25 +29,41 @@
     </div>
 
     <!-- Display Comments -->
-    <div class="comments-container">
+    <div class="comments-container" id="comments">
         <% if (comments.length > 0) { %>
           <ul>
             <% comments.forEach(comment => { %>
-              <li>
-                <p><strong><%= comment.user.username %></strong>: <%= comment.content %></p>
-                
-                <% if (comment.replies.length > 0) { %>
-                  <ul>
-                    <% comment.replies.forEach(reply => { %>
-                      <li>
-                        <p><strong><%= reply.user.username %></strong>: <%= reply.content %></p>
-                      </li>
-                    <% }) %>
-                  </ul>
-                <% } %>
-      
-              </li>
-            <% }) %>
+                <li>
+                  <p>
+                    <strong>
+                      <% if (comment.user) { %>
+                        <%= comment.user.username %>
+                      <% } else { %>
+                        Anonymous
+                      <% } %>
+                    </strong>: <%= comment.content %>
+                  </p>
+              
+                  <% if (comment.replies.length > 0) { %>
+                    <ul>
+                      <% comment.replies.forEach(reply => { %>
+                        <li>
+                          <p>
+                            <strong>
+                              <% if (reply.user) { %>
+                                <%= reply.user.username %>
+                              <% } else { %>
+                                Anonymous
+                              <% } %>
+                            </strong>: <%= reply.content %>
+                          </p>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+                </li>
+              <% }) %>
+              
           </ul>
         <% } else { %>
           <p>No comments yet.</p>

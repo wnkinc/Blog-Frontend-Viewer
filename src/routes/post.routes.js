@@ -7,6 +7,6 @@ const {
 } = require("../controllers/post.controller");
 
 router.get("/:slug", getPostBySlug);
-router.post("/:slug/comments", postComment);
+router.post("/:slug/comment", postComment);
 
 module.exports = router;
