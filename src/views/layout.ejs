@@ -33,5 +33,50 @@
     <!-- Load Matter.js from a CDN -->
     <script src="https://unpkg.com/matter-js@0.19.0/build/matter.min.js"></script>
     <script defer src="/scripts/main.js"></script>
+    <script>
+      const sprite = document.getElementById("sprite");
+      const frameWidth = 80; // Width of one frame
+      const totalFrames = 96; // Total number of frames
+      let currentFrame = 0;
+      let frameRate = 25; // Speed in milliseconds per frame (adjustable)
+      let animationInterval = null;
+      let direction = 1; // 1 = forward, -1 = backward
+
+      function updateFrame() {
+        currentFrame += direction;
+
+        if (direction === 1 && currentFrame >= totalFrames) {
+          currentFrame = totalFrames - 1; // Stop at last frame
+          clearInterval(animationInterval);
+        } else if (direction === -1 && currentFrame <= 0) {
+          currentFrame = 0; // Stop at first frame
+          clearInterval(animationInterval);
+        }
+
+        sprite.style.backgroundPosition = `-${currentFrame * frameWidth}px 0`;
+      }
+
+      function playForward() {
+        direction = 1;
+        if (animationInterval) clearInterval(animationInterval);
+        animationInterval = setInterval(updateFrame, frameRate);
+      }
+
+      function playBackward() {
+        direction = -1;
+        if (animationInterval) clearInterval(animationInterval);
+        animationInterval = setInterval(updateFrame, frameRate);
+      }
+
+      function stopAnimation() {
+        clearInterval(animationInterval);
+      }
+
+      // When the element gains focus → Play forward
+      sprite.addEventListener("mouseenter", playForward);
+
+      // When the element loses focus → Play backward
+      sprite.addEventListener("mouseleave", playBackward);
+    </script>
   </body>
 </html>

@@ -6,7 +6,7 @@
   box-sizing: border-box;
   background-color: #fff; /* White background */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Slight lift effect */
-  padding: 10px 20px;
+  padding: 5px 20px;
   transition: box-shadow 0.3s ease; /* Smooth shadow transition */
   z-index: 10; /* Higher than default */
   display: flex;
@@ -22,14 +22,22 @@
 
 .logo {
   margin-right: 30px;
-  white-space: nowrap;
+  display: inline-block;
 }
 
-.logo img {
-  max-height: 34px; /* Adjust based on your design */
+.sprite-animation {
+  display: inline-block;
+  width: 80px;
+  height: 45px;
+  background: url("/imgs/sprite_sheetTL.png") no-repeat 0 0;
+  background-size: 7680px 45px;
+}
+
+/* .logo img {
+  max-height: 34px;
   height: auto;
   width: auto;
-}
+} */
 
 .sign-in-link {
   margin-left: 15px;
