@@ -1,4 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initializeMatterJS() {
+  if (window.matterInitialized) return; // Prevent multiple initializations
+  if (window.innerWidth < 1300) return; // Don't initialize if screen is too small
+
+  window.matterInitialized = true; // Flag to prevent reinitialization
   // Get the container element for the column
   const container = document.getElementById("balloon-column");
   // Use the container's actual dimensions
@@ -191,4 +195,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+}
+
+// Run when the page loads
+document.addEventListener("DOMContentLoaded", initializeMatterJS);
+
+// Detect window resizing to trigger Matter.js when screen widens
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 1300 && !window.matterInitialized) {
+    initializeMatterJS();
+  }
 });
