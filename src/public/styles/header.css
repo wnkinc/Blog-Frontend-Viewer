@@ -23,6 +23,8 @@
 .logo {
   margin-right: 30px;
   display: inline-block;
+  align-self: center; /* Moves the logo to the bottom */
+  display: flex;
 }
 
 .logo img {
@@ -123,6 +125,7 @@ li a {
 .logo-search {
   flex: 1;
   display: flex;
+  align-items: center;
 }
 
 @media (min-width: 1300px) {

@@ -1,7 +1,7 @@
 .footer {
   background-color: #fff; /* White background to match header */
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05); /* Slight lift effect at the top */
-  padding: 20px 0; /* Extra padding for spacing */
+  padding: 10px 0 5px 0; /* Extra padding for spacing */
   font-size: 14px; /* Standardized text size */
 }
 
@@ -27,7 +27,7 @@
 }
 
 .footer-links li a:hover {
-  color: #007bff; /* Darker blue on hover */
+  color: #000; /* Darker blue on hover */
 }
 
 .footer hr {
