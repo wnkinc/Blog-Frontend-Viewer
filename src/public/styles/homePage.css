@@ -319,7 +319,7 @@ ul.links {
 
   .sidebar.right img {
     position: absolute; /* Removes from document flow, so it doesn’t take space */
-    top: 0; /* Adjust as needed to position it correctly */
+    top: 350px; /* Adjust as needed to position it correctly */
     left: 50%; /* Center it horizontally */
     transform: translateX(-50%); /* Ensure it's truly centered */
     width: 360px; /* Keep its original width */
@@ -328,5 +328,11 @@ ul.links {
 
   #balloon-column {
     flex-grow: 1;
+  }
+
+  .ad {
+    width: 350px;
+    height: 350px;
+    background-color: purple;
   }
 }
