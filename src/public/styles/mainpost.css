@@ -367,16 +367,71 @@ li a {
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, visibility 0.1s ease-in-out;
 }
 
-.sidebar-item:hover::after {
+.sidebar-item:hover::after,
+.sidebar-item.tooltip-visible::after {
   opacity: 1;
   visibility: visible;
 }
 
 .sidebar.right {
   display: none;
+}
+
+/* **************** REACTIONS *********************** */
+.reactions-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.reactions-menu {
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  left: 50px; /* Positions the menu to the right of the icon */
+  top: -6px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 10px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.1s ease-in-out;
+}
+
+.reactions-container:hover .reactions-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.reaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+
+  padding: 4px 10px; /* Adds some space around each reaction */
+  border-radius: 30px; /* Rounded corners for a smoother look */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.reaction:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+.reaction.selected {
+  background-color: #f0f0f0; /* Light gray to show it's selected */
+}
+
+.reaction small {
+  font-size: 14px;
+  margin-top: 2px;
+  color: #555;
 }
 
 @media (min-width: 1300px) {
