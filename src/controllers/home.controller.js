@@ -29,6 +29,14 @@ const getHomepage = async (req, res, next) => {
   }
 };
 
+/**
+ * -------------- GET posts ----------------
+ */
+const getUnderConstructionPage = async (req, res, next) => {
+  res.render("underConstruction");
+};
+
 module.exports = {
   getHomepage,
+  getUnderConstructionPage,
 };
