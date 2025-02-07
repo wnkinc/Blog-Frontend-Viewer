@@ -7,13 +7,15 @@
 .sidebar.left {
   flex: 1;
   background: transparent;
-  padding: 10px;
+  padding: 25px;
+  padding-top: 0;
   position: sticky;
   top: 70px; /* Adjust to match the header height */
   align-self: stretch; /* Ensures it stays aligned in flex container */
   max-height: calc(100vh - 220px); /* Allow full viewport height minus header */
   overflow-y: auto; /* Enables scrolling inside sidebar if needed */
   max-width: 220px;
+  box-sizing: border-box;
 }
 
 .sidebar.right {
@@ -180,6 +182,119 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: color 0.2s ease-in-out;
+}
+
+.links-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sprite-animation {
+  display: inline-block;
+  width: 120px; /* Intermediate size */
+  height: 67.5px; /* Calculated to maintain ratio (120 * (45 / 80)) */
+  background: url("/imgs/output.png") no-repeat 0 0;
+  background-size: 11520px 67.5px; /* Adjust background size proportionally */
+}
+
+#sprite {
+  margin: 0;
+}
+
+/* Remove bullet points from list items */
+ul.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Add spacing between list items */
+.links.top li a {
+  margin-bottom: 15px; /* Adjust as needed */
+}
+
+/* Style the social media links */
+.links-section a {
+  font-size: 1.4rem; /* Increase size of social icons */
+  margin-right: 20px; /* Add spacing between icons */
+  display: inline-block;
+  color: #000;
+  white-space: nowrap;
+}
+
+.links-section hr {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.social-links {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.links.bottom {
+  margin-top: 15px;
+}
+
+.links.bottom a {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+/* Ensure list items are displayed properly */
+.links li {
+  position: relative;
+  display: inline-block; /* Keeps layout intact */
+  padding-bottom: 5px; /* Space for the yellow bar */
+}
+
+/* Create initial thin yellow underline */
+.links li a {
+  position: relative;
+  text-decoration: none;
+  padding: 5px 0;
+  z-index: 2;
+}
+
+.links li a::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  bottom: -6px;
+  width: 100%;
+  height: 5px; /* Thin yellow bar initially */
+  background-color: #ecd06f;
+  transition: height 0.3s ease-in-out;
+  z-index: -1;
+}
+
+/* Hover effect: expand yellow bar to enclose the text */
+.links li a:hover::after {
+  height: 85%;
+}
+
+/* Ensure the text remains visible on hover */
+.links li a:hover {
+  color: #000; /* Keep text color unchanged */
+  position: relative;
+  z-index: 1;
+}
+
+.social-links {
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+/* Social link default size */
+.social {
+  font-size: 1.4rem; /* Base size */
+  transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+/* Scale up the icon on hover */
+.social:hover {
+  transform: scale(1.5);
 }
 
 @media (min-width: 1300px) {

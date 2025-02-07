@@ -25,19 +25,11 @@
   display: inline-block;
 }
 
-.sprite-animation {
-  display: inline-block;
-  width: 80px;
-  height: 45px;
-  background: url("/imgs/sprite_sheetTL.png") no-repeat 0 0;
-  background-size: 7680px 45px;
-}
-
-/* .logo img {
+.logo img {
   max-height: 34px;
   height: auto;
   width: auto;
-} */
+}
 
 .sign-in-link {
   margin-left: 15px;
