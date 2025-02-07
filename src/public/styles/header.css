@@ -21,7 +21,7 @@
 }
 
 .logo {
-  margin-right: 30px;
+  margin-right: 15px;
   display: inline-block;
   align-self: center; /* Moves the logo to the bottom */
   display: flex;
@@ -36,6 +36,11 @@
 .sign-in-link {
   margin-left: 15px;
   white-space: nowrap;
+}
+
+.sign-in-link a:hover {
+  color: #000 !important;
+  text-decoration: underline;
 }
 
 .nav-links {
@@ -76,17 +81,19 @@ li a {
 }
 
 .search-bar input:focus {
+  color: #000;
   outline: none; /* Remove default outline*/
-  border-color: #007bff; /* Blue border on focus */
+  border-color: #000; /* Blue border on focus */
   border-width: 1px; /* Slightly thicker border */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent with the button shadow */
+  box-sizing: border-box;
 }
 
 .search-bar .clear-btn {
   position: absolute;
   right: 10px;
   display: none;
-  font-size: 20px;
+  font-size: 30px;
   color: #666;
   cursor: pointer;
   background: none;
@@ -98,26 +105,26 @@ li a {
 }
 
 .search-bar .clear-btn:hover {
-  color: #007bff; /* Optional: Change color on hover */
+  color: #000; /* Optional: Change color on hover */
 }
 
 .btn-create-account {
   display: inline-block;
   background-color: transparent; /* No solid background */
-  color: #2779a7; /* Blue text color */
+  color: #000; /* Blue text color */
   padding: 9.5px 16px; /* Padding for the button */
   font-size: 14px; /* Font size */
   text-decoration: none; /* Remove underline */
-  border: 1px solid #2779a7; /* Blue outline */
+  border: 1px solid #000; /* Blue outline */
   border-radius: 7px; /* Rounded corners */
   white-space: nowrap;
   transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-links .btn-create-account:hover {
-  background-color: #2779a7; /* Use text color as background */
+  background-color: #000; /* Use text color as background */
   color: #ffffff; /* White text */
-  border-color: #2779a7; /* Keep border same as background */
+  border-color: #000; /* Keep border same as background */
   text-decoration: underline; /* Underline text */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
