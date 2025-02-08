@@ -8,21 +8,20 @@
 
     <!-- Reaction Menu -->
     <div class="reactions-menu">
-      <div class="reaction" data-reaction-type="like">
-        <span>❤️</span><small>0</small>
+      <% const reactions = { like: 10, unicorn: 5, funny: 8, wow: 3, dislike: 2
+      }; %>
+      <!-- Example values from DB -->
+
+      <% Object.entries(reactions).forEach(([type, count]) => { %>
+      <div class="reaction" data-reaction-type="<%= type %>">
+        <span>
+          <% if (type === "like") { %> ❤️ <% } %> <% if (type === "unicorn") {
+          %> 🦄 <% } %> <% if (type === "funny") { %> 😂 <% } %> <% if (type ===
+          "wow") { %> 🤯 <% } %> <% if (type === "dislike") { %> 👎 <% } %>
+        </span>
+        <small><%= count %></small>
       </div>
-      <div class="reaction" data-reaction-type="unicorn">
-        <span>🦄</span><small>0</small>
-      </div>
-      <div class="reaction" data-reaction-type="funny">
-        <span>😂</span><small>0</small>
-      </div>
-      <div class="reaction" data-reaction-type="wow">
-        <span>🤯</span><small>0</small>
-      </div>
-      <div class="reaction" data-reaction-type="dislike">
-        <span>👎</span><small>0</small>
-      </div>
+      <% }); %>
     </div>
   </div>
 

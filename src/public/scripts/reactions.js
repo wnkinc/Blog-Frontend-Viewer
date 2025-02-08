@@ -27,50 +27,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const reactions = document.querySelectorAll(".reaction");
+  const postId = document.body.getAttribute("data-post-id"); // Ensure post ID is set on the page
+  let reactionBuffer = JSON.parse(localStorage.getItem("reactionBuffer")) || {};
 
-  // Load reaction data from Local Storage
-  let userReactions = JSON.parse(localStorage.getItem("userReactions")) || {};
+  // Ensure reactions exist for this post in storage
+  if (!reactionBuffer[postId]) {
+    reactionBuffer[postId] = {};
+  }
 
-  // Function to update UI from stored reactions
   function updateUI() {
     reactions.forEach((reaction) => {
       const type = reaction.getAttribute("data-reaction-type");
       const countElement = reaction.querySelector("small");
-      countElement.textContent = userReactions[type] || 0;
+      let totalCount = parseInt(countElement.textContent, 10) || 0;
 
-      // Highlight reaction if user has selected it
-      if (localStorage.getItem(`selected-${type}`) === "true") {
+      // If the user previously clicked this reaction, highlight it
+      if (reactionBuffer[postId][type]) {
         reaction.classList.add("selected");
       } else {
         reaction.classList.remove("selected");
       }
+
+      // Ensure UI count reflects any changes the user made
+      countElement.textContent =
+        totalCount + (reactionBuffer[postId][type] ? 1 : 0);
     });
   }
 
-  // Function to handle reaction click
   function handleReactionClick(event) {
     const reaction = event.currentTarget;
     const type = reaction.getAttribute("data-reaction-type");
     const countElement = reaction.querySelector("small");
-    let count = parseInt(countElement.textContent, 10);
+    let totalCount = parseInt(countElement.textContent, 10) || 0;
 
-    // Check if user already clicked this reaction
-    if (localStorage.getItem(`selected-${type}`) === "true") {
-      // Undo the reaction
-      count--;
-      localStorage.removeItem(`selected-${type}`);
+    // Toggle reaction state for this post
+    if (reactionBuffer[postId][type]) {
+      totalCount--; // Remove reaction
+      delete reactionBuffer[postId][type];
     } else {
-      // Add the reaction
-      count++;
-      localStorage.setItem(`selected-${type}`, "true");
+      totalCount++; // Add reaction
+      reactionBuffer[postId][type] = true;
     }
 
-    // Store updated count
-    userReactions[type] = count;
-    localStorage.setItem("userReactions", JSON.stringify(userReactions));
-
     // Update UI
-    updateUI();
+    countElement.textContent = totalCount;
+    reaction.classList.toggle("selected");
+
+    // Save to Local Storage
+    localStorage.setItem("reactionBuffer", JSON.stringify(reactionBuffer));
   }
 
   // Attach event listeners to reactions
@@ -78,6 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     reaction.addEventListener("click", handleReactionClick);
   });
 
-  // Initialize UI from Local Storage
+  // Initialize UI
   updateUI();
 });
