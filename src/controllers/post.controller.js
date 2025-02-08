@@ -89,24 +89,19 @@ const postReply = async (req, res, next) => {
 };
 
 /**
- * -------------- POST reactions ----------------
+ * -------------- POST reactions FRONTEND ----------------
  */
 const postReactions = async (req, res, next) => {
   try {
-    const { postId, reactions } = req.body; // Get data from fetch request
-
-    if (!postId || !reactions || reactions.length === 0) {
-      return res.status(400).json({ error: "Invalid reaction data." });
-    }
-
-    // Send reaction data to backend server
+    const { allSelections } = req.body;
+    console.log("Received multiple reactions:", allSelections);
+    // forward to your backend server:
     const apiUrl = `${process.env.BLOG_API_BASE_URL}/posts/reactions`;
-    const response = await axios.post(apiUrl, { postId, reactions });
-
+    const response = await axios.post(apiUrl, { allSelections });
     res.status(response.status).json(response.data);
   } catch (error) {
-    console.error("Error posting reactions:", error);
-    next(error); // Forward to error handling middleware
+    console.error("Error posting multiple reactions:", error);
+    next(error);
   }
 };
 
