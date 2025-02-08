@@ -8,10 +8,6 @@
 
     <!-- Reaction Menu -->
     <div class="reactions-menu">
-      <% const reactions = { like: 10, unicorn: 5, funny: 8, wow: 3, dislike: 2
-      }; %>
-      <!-- Example values from DB -->
-
       <% Object.entries(reactions).forEach(([type, count]) => { %>
       <div class="reaction" data-reaction-type="<%= type %>">
         <span>

@@ -10,7 +10,7 @@ const getPostBySlug = async (req, res, next) => {
   try {
     const apiUrl = `${process.env.BLOG_API_BASE_URL}/posts/${slug}`;
     const response = await axios.get(apiUrl);
-    const { post } = response.data;
+    const { post, reactions } = response.data; // Backend already formats reactions
 
     if (!post) {
       return res.status(404).render("404", { title: "Post Not Found" });
@@ -28,11 +28,12 @@ const getPostBySlug = async (req, res, next) => {
       );
     });
 
-    // Render the post view with the post data
+    // Render the post view with the post data & reactions
     res.render("newpost", {
       pageTitle: post.title,
       post,
       comments: topLevelComments, // Now includes replies
+      reactions, // No need for manual defaults, backend handles this
     });
   } catch (error) {
     console.error("Error fetching post by slug:", error);
@@ -87,8 +88,31 @@ const postReply = async (req, res, next) => {
   }
 };
 
+/**
+ * -------------- POST reactions ----------------
+ */
+const postReactions = async (req, res, next) => {
+  try {
+    const { postId, reactions } = req.body; // Get data from fetch request
+
+    if (!postId || !reactions || reactions.length === 0) {
+      return res.status(400).json({ error: "Invalid reaction data." });
+    }
+
+    // Send reaction data to backend server
+    const apiUrl = `${process.env.BLOG_API_BASE_URL}/posts/reactions`;
+    const response = await axios.post(apiUrl, { postId, reactions });
+
+    res.status(response.status).json(response.data);
+  } catch (error) {
+    console.error("Error posting reactions:", error);
+    next(error); // Forward to error handling middleware
+  }
+};
+
 module.exports = {
   getPostBySlug,
   postComment,
   postReply,
+  postReactions,
 };

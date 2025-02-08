@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const reactions = document.querySelectorAll(".reaction");
-  const postId = document.body.getAttribute("data-post-id"); // Ensure post ID is set on the page
+  const postId = document.body.getAttribute("data-post-id");
   let reactionBuffer = JSON.parse(localStorage.getItem("reactionBuffer")) || {};
+  let batchBuffer = JSON.parse(localStorage.getItem("batchBuffer")) || {}; // Tracks only final selections
+  let timerStarted = localStorage.getItem("reactionTimerStarted");
 
-  // Ensure reactions exist for this post in storage
-  if (!reactionBuffer[postId]) {
-    reactionBuffer[postId] = {};
-  }
+  if (!reactionBuffer[postId]) reactionBuffer[postId] = {};
+  if (!batchBuffer[postId]) batchBuffer[postId] = {};
 
   function updateUI() {
     reactions.forEach((reaction) => {
@@ -41,40 +41,68 @@ document.addEventListener("DOMContentLoaded", () => {
       const countElement = reaction.querySelector("small");
       let totalCount = parseInt(countElement.textContent, 10) || 0;
 
-      // If the user previously clicked this reaction, highlight it
+      // Highlight if the user selected this reaction
       if (reactionBuffer[postId][type]) {
         reaction.classList.add("selected");
       } else {
         reaction.classList.remove("selected");
       }
 
-      // Ensure UI count reflects any changes the user made
-      countElement.textContent =
-        totalCount + (reactionBuffer[postId][type] ? 1 : 0);
+      // Ensure UI count reflects any changes
+      countElement.textContent = totalCount;
     });
   }
 
   function handleReactionClick(event) {
     const reaction = event.currentTarget;
     const type = reaction.getAttribute("data-reaction-type");
-    const countElement = reaction.querySelector("small");
-    let totalCount = parseInt(countElement.textContent, 10) || 0;
 
     // Toggle reaction state for this post
     if (reactionBuffer[postId][type]) {
-      totalCount--; // Remove reaction
-      delete reactionBuffer[postId][type];
+      delete reactionBuffer[postId][type]; // User unselects it, but no decrementing occurs
     } else {
-      totalCount++; // Add reaction
-      reactionBuffer[postId][type] = true;
+      reactionBuffer[postId][type] = true; // User selects it
     }
 
-    // Update UI
-    countElement.textContent = totalCount;
-    reaction.classList.toggle("selected");
+    // Store only final selections for batch update (batchBuffer will hold only selected ones)
+    batchBuffer[postId] = Object.keys(reactionBuffer[postId]);
 
     // Save to Local Storage
     localStorage.setItem("reactionBuffer", JSON.stringify(reactionBuffer));
+    localStorage.setItem("batchBuffer", JSON.stringify(batchBuffer));
+
+    // Start timer if this is the first reaction in this session
+    if (!timerStarted) {
+      timerStarted = true;
+      localStorage.setItem("reactionTimerStarted", "true");
+      setTimeout(batchUpdateReactions, 10 * 60 * 1000); // 10-minute delay
+    }
+
+    updateUI();
+  }
+
+  async function batchUpdateReactions() {
+    if (!batchBuffer[postId] || batchBuffer[postId].length === 0) {
+      console.log("No reactions to update.");
+      return;
+    }
+
+    try {
+      const response = await fetch("/post/reactions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId, reactions: batchBuffer[postId] }), // Send only selected reactions
+      });
+
+      if (response.ok) {
+        console.log("Reactions updated successfully");
+        localStorage.removeItem("batchBuffer"); // Clear batch buffer after sending
+        localStorage.setItem("reactionTimerStarted", "false"); // Reset timer flag
+        timerStarted = false;
+      }
+    } catch (error) {
+      console.error("Error updating reactions:", error);
+    }
   }
 
   // Attach event listeners to reactions
