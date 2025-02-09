@@ -64,7 +64,6 @@ li a {
 .search-bar {
   position: relative;
   flex-grow: 1;
-  max-width: 500px;
   display: flex;
   margin-right: auto; /* This pushes following items to the right */
 }
@@ -145,6 +144,13 @@ li a {
   /* Distribute space more evenly */
   .search-bar {
     margin-right: auto; /* Each direct child has horizontal spacing */
-    max-width: 500px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .sign-in-link {
+    margin-left: 0;
   }
 }

@@ -1,18 +1,20 @@
 /* Make the left sidebar sticky */
 .container {
   margin: 20px;
+  margin-top: 10px;
   margin-bottom: 0;
 }
 
 .sidebar.left {
   flex: 1;
   background: transparent;
-  padding: 25px;
+  padding: 20px;
+  padding-right: 10px;
   padding-top: 0;
   position: sticky;
-  top: 70px; /* Adjust to match the header height */
+  top: 60px; /* Adjust to match the header height */
   align-self: stretch; /* Ensures it stays aligned in flex container */
-  max-height: calc(100vh - 220px); /* Allow full viewport height minus header */
+  max-height: calc(100vh - 140px); /* Allow full viewport height minus header */
   overflow-y: auto; /* Enables scrolling inside sidebar if needed */
   max-width: 220px;
   box-sizing: border-box;
@@ -189,6 +191,48 @@
   flex-direction: column;
 }
 
+.random-panda {
+  margin-bottom: 20px;
+  height: 220px;
+  width: 100%;
+  min-width: 118px;
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 10px; /* Adds spacing inside */
+
+  /* Prevents padding from increasing size */
+  box-sizing: border-box;
+
+  /* Center everything */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panda-button {
+  background-color: #007bff; /* Blue button */
+  color: white;
+  padding: 10px !important;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 !important;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  overflow: hidden;
+  white-space: normal !important;
+}
+
+.panda-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.random-panda a {
+  font-size: 1rem !important;
+}
+
 .sprite-animation {
   display: inline-block;
   width: 120px; /* Intermediate size */
@@ -206,6 +250,8 @@ ul.links {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Add spacing between list items */
@@ -403,5 +449,9 @@ ul.links {
 
   .ad-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  .random-panda {
+    display: none;
   }
 }
