@@ -104,7 +104,12 @@ function initializeMatterJS() {
 
   // Utility function: Returns a random sprite from the available options.
   function randomSprite() {
-    const sprites = ["/imgs/12BT.png", "/imgs/12.png"];
+    const sprites = [
+      "/imgs/12BT.png",
+      "/imgs/12.png",
+      "/imgs/10.png",
+      "/imgs/10wkT.png",
+    ];
     return sprites[Math.floor(Math.random() * sprites.length)];
   }
 

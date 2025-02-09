@@ -196,7 +196,7 @@
   height: 220px;
   width: 100%;
   min-width: 118px;
-  background-color: white;
+  background-color: #ecd06f;
   border-radius: 7px;
   margin-bottom: 10px;
   border: 1px solid #ccc; /* Light gray border */
@@ -208,11 +208,18 @@
   /* Center everything */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.random-panda p {
+  margin: 0;
 }
 
 .panda-button {
-  background-color: #007bff; /* Blue button */
+  background-color: #d9534f; /* Blue button */
   color: white;
   padding: 10px !important;
   border-radius: 5px;
@@ -226,7 +233,7 @@
 }
 
 .panda-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #ae423e; /* Darker blue on hover */
 }
 
 .random-panda a {
@@ -234,10 +241,9 @@
 }
 
 .panda-image {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  margin-bottom: 10px;
 }
 
 .sprite-animation {
