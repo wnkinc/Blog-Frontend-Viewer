@@ -35,7 +35,7 @@
   font-family: Arial, sans-serif;
   color: #333;
   word-wrap: break-word;
-  border: 2px solid #ccc;
+  border: 2px solid #e0e0e0;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background: #fff;
@@ -354,6 +354,27 @@ ul.links {
 /* Scale up the icon on hover */
 .social:hover {
   transform: scale(1.5);
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-left: 6px;
+}
+
+.filter-tab {
+  border: none;
+  outline: none;
+  background: #f9fafb;
+  color: #666;
+  font-size: larger;
+  padding: 5px;
+}
+
+.filter-tabs .active {
+  background-color: #e0e0e0;
+  color: #000;
+  border-radius: 8px 8px 0 0;
 }
 
 @media (min-width: 1300px) {

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const tabs = document.querySelectorAll(".tab");
+  const tabs = document.querySelectorAll(".filter-tab");
   const postsContainer = document.querySelector(".feed");
   const posts = Array.from(document.querySelectorAll(".feed-post"));
 
