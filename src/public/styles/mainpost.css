@@ -388,6 +388,10 @@ li a {
   display: none;
 }
 
+.comments-svg {
+  color: #000;
+}
+
 @keyframes save-click {
   0% {
     transform: scale(1);
