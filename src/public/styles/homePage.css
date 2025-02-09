@@ -386,11 +386,11 @@ ul.links {
   .ad {
     width: 350px;
     height: 350px;
-    background-color: white;
+    background-color: #ecd06f;
     border-radius: 7px;
     margin-bottom: 10px;
     border: 1px solid #ccc; /* Light gray border */
-    padding: 20px; /* Adds spacing inside */
+    /* Adds spacing inside */
 
     /* Prevents padding from increasing size */
     box-sizing: border-box;
@@ -398,13 +398,17 @@ ul.links {
     /* Center everything */
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .ad-title {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     flex-wrap: wrap;
+    margin-top: 0 !important;
   }
 
   .ad-image {
@@ -423,27 +427,30 @@ ul.links {
 
   .ad-line-1 {
     font-weight: bold; /* From .ad-highlight */
-    color: #333;
+    color: #000;
     margin-left: 0px;
     text-align: center;
   }
 
   .ad-line-2 {
-    color: #555; /* From .ad-secondary */
-    font-style: italic;
+    color: #d9534f; /* From .ad-secondary */
     margin-left: 15px;
+    text-align: center;
+    font-weight: 600;
   }
 
   .ad-line-3 {
-    color: #d9534f; /* From .ad-emphasis */
-    font-weight: 600;
+    color: #000; /* From .ad-emphasis */
+
     margin-left: 30px;
+    text-align: center;
+    font-style: italic;
   }
 
   /* Button Styling */
   .ad-button {
     display: inline-block;
-    background-color: #007bff; /* Blue button */
+    background-color: #d9534f; /* Blue button */
     color: white;
     padding: 10px 16px;
     border-radius: 5px;
@@ -452,10 +459,11 @@ ul.links {
     margin-top: 15px;
     transition: background-color 0.3s ease;
     text-align: center;
+    margin: 0 20px;
   }
 
   .ad-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #ae423e; /* Darker blue on hover */
   }
 
   .random-panda {
