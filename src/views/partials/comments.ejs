@@ -1,5 +1,5 @@
 <!-- File: views/partials/comments.ejs -->
-<section class="comments-section">
+<section class="comments-section" id="comments">
   <!-- Comments Header with Subscribe Button -->
   <div class="comments-header">
     <h2>Comments</h2>
@@ -29,7 +29,7 @@
   </div>
 
   <!-- Display Comments -->
-  <div class="comments-container" id="comments">
+  <div class="comments-container">
     <% if (comments.length > 0) { %>
     <ul class="comments-list">
       <% comments.forEach(comment => { %>
