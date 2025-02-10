@@ -423,7 +423,7 @@ ul.links {
   border-radius: 8px 8px 0 0;
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1240px) {
   .container {
     max-width: 1350px;
     align-self: center;

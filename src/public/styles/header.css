@@ -134,7 +134,7 @@ li a {
   align-items: center;
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1240px) {
   .navbar {
     max-width: 1240px;
     justify-content: center; /* All items together in the center */

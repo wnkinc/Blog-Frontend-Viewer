@@ -22,17 +22,17 @@ li a {
 }
 
 .container {
+  flex: 1;
   display: flex;
+  padding-left: 44px;
+  box-sizing: border-box;
 }
 
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.container {
-  margin-left: 20px;
+  padding: 0 10px;
 }
 
 .mainpost {
@@ -43,7 +43,7 @@ li a {
   color: #333;
   word-wrap: break-word;
 
-  margin-top: 25px;
+  margin-top: 20px;
 
   /* Add border */
   border: 2px solid #ccc; /* Light gray border */
@@ -339,6 +339,7 @@ li a {
   padding: 60px 16px;
   padding-left: 0;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .sidebar-item {
@@ -475,9 +476,12 @@ li a {
   color: #555;
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1290px) {
   .container {
     align-self: center;
+    max-width: 1240px;
+    width: 100%;
+    padding-left: 20px;
   }
 
   .sidebar.right {
@@ -490,9 +494,9 @@ li a {
     position: relative;
   }
 
-  .sidebar.right img {
+  .sidebar.right .balloon-box {
     position: absolute; /* Removes from document flow, so it doesn’t take space */
-    top: 0; /* Adjust as needed to position it correctly */
+    top: 370px; /* Adjust as needed to position it correctly */
     left: 50%; /* Center it horizontally */
     transform: translateX(-50%); /* Ensure it's truly centered */
     width: 360px; /* Keep its original width */
@@ -501,6 +505,90 @@ li a {
 
   #balloon-column {
     flex-grow: 1;
+  }
+
+  .ad {
+    width: 350px;
+    height: 350px;
+    background-color: #ecd06f;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc; /* Light gray border */
+    /* Adds spacing inside */
+
+    /* Prevents padding from increasing size */
+    box-sizing: border-box;
+
+    /* Center everything */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ad-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 0 !important;
+  }
+
+  .ad-image {
+    max-width: 80px; /* Adjust the image size */
+    height: auto;
+    border-radius: 50%; /* Makes the image circular if desired */
+    float: left; /* Aligns image to the left */
+    margin-right: 10px; /* Adds space between the image and text */
+  }
+
+  /* Apply previous styles to new class names */
+  .ad-line {
+    display: block;
+    text-align: left; /* Ensure left alignment */
+  }
+
+  .ad-line-1 {
+    font-weight: bold; /* From .ad-highlight */
+    color: #000;
+    margin-left: 0px;
+    text-align: center;
+  }
+
+  .ad-line-2 {
+    color: #d9534f; /* From .ad-secondary */
+    margin-left: 15px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .ad-line-3 {
+    color: #000; /* From .ad-emphasis */
+
+    margin-left: 30px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* Button Styling */
+  .ad-button {
+    display: inline-block;
+    background-color: #d9534f; /* Blue button */
+    color: white;
+    padding: 10px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin: 0 20px;
+  }
+
+  .ad-button:hover {
+    background-color: #ae423e; /* Darker blue on hover */
   }
 }
 
