@@ -86,5 +86,17 @@
       // When the element loses focus → Play backward
       sprite.addEventListener("mouseleave", playBackward);
     </script>
+    <script>
+      function triggerShake() {
+        const badge = document.querySelector(".notification-badge");
+        badge.style.animation = "none"; // Reset animation
+        setTimeout(() => {
+          badge.style.animation = "shake-rotate 0.4s ease-in-out";
+        }, 10);
+      }
+
+      // Repeat shake every 3 seconds
+      setInterval(triggerShake, 5000);
+    </script>
   </body>
 </html>

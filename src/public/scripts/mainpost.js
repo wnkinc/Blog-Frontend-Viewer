@@ -20,7 +20,7 @@ function initializeMatterJS() {
 
   // 1. Create the engine and set upward gravity (slow)
   const engine = Engine.create();
-  engine.world.gravity.y = -0.035; // A gentle upward pull
+  engine.world.gravity.y = -0.025; // A gentle upward pull
 
   // 2. Create a renderer that draws inside our container using its dynamic dimensions
   const render = Render.create({
@@ -48,7 +48,7 @@ function initializeMatterJS() {
     } else {
       Runner.run(runner, engine); // Resume Matter.js engine
       if (!balloonInterval) {
-        balloonInterval = setInterval(addBalloon, 8000); // Restart interval
+        balloonInterval = setInterval(addBalloon, 12000); // Restart interval
       }
     }
   });
@@ -172,7 +172,7 @@ function initializeMatterJS() {
   addBalloon();
 
   // Continue spawning balloons every 8 seconds
-  let balloonInterval = setInterval(addBalloon, 8000);
+  let balloonInterval = setInterval(addBalloon, 12000);
 
   // 7. Add a click event listener so that clicking a balloon "pops" it with an expansion effect.
   render.canvas.addEventListener("click", (event) => {

@@ -48,7 +48,7 @@ function initializeMatterJS() {
     } else {
       Runner.run(runner, engine); // Resume Matter.js engine
       if (!balloonInterval) {
-        balloonInterval = setInterval(addBalloon, 8000); // Restart interval
+        balloonInterval = setInterval(addBalloon, 12000); // Restart interval
       }
     }
   });
@@ -167,7 +167,7 @@ function initializeMatterJS() {
   addBalloon();
 
   // Continue spawning balloons every 8 seconds
-  let balloonInterval = setInterval(addBalloon, 8000);
+  let balloonInterval = setInterval(addBalloon, 12000);
 
   // 7. Add a click event listener so that clicking a balloon "pops" it with an expansion effect.
   render.canvas.addEventListener("click", (event) => {
