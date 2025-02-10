@@ -57,8 +57,51 @@ li a {
 }
 
 .post-header {
-  padding: 32px 48px;
+  padding: 32px 28px;
   padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between profile picture and text */
+}
+
+.profile-pic {
+  width: 30px !important; /* Adjust as needed */
+  height: 30px !important;
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Ensures image fills without distortion */
+  display: block;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.author-name button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.post-title {
+  font-size: 2.5rem !important;
+  margin-left: 41px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 /* Enforce max width on images */
@@ -68,8 +111,15 @@ li a {
   display: block; /* Prevents inline spacing issues */
 }
 
+.post-date {
+  color: #666;
+}
+
 .post-content {
-  padding: 32px 48px;
+  padding: 0 48px;
+  padding-top: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 /* Optional: If the image is inside `.post-content`, make sure it follows the same rule */
@@ -193,21 +243,43 @@ li a {
   resize: vertical; /* Allows users to expand */
 }
 
+/* Change border color when textarea is focused */
+.comment-form textarea:focus,
+.reply-form textarea:focus {
+  border-color: #2779a7; /* Change to blue when focused */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional glow effect */
+}
+
 .comment-form button,
 .reply-form button {
   margin-top: 10px;
   padding: 10px;
   width: 100%; /* Ensures button matches textarea width */
-  background-color: #007bff;
-  color: white;
-  border: none;
+  background-color: white;
+  color: #2779a7;
+  border: 1px solid #2779a7;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.subscribe-button {
+  padding: 10px;
+  background-color: white;
+  color: #2779a7;
+  border: 1px solid #2779a7;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subscribe-button:hover {
+  background-color: #2779a7;
+  color: white;
+}
+
 .comment-form button:hover,
 .reply-form button:hover {
-  background-color: #0056b3;
+  background-color: #2779a7;
+  color: white;
 }
 
 .profile-pic {
