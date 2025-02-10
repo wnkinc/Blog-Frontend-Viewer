@@ -64,13 +64,21 @@
 .feed-post .post-title {
   font-size: 2rem;
   margin: 0.3rem;
-  margin-left: 48px;
+  margin-left: 41px;
 }
 
 .author-name a,
 .post-title a {
   text-decoration: none;
   color: #000;
+}
+
+.author-name button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.9rem;
 }
 
 /* Post meta info */
@@ -119,7 +127,7 @@
   align-items: center;
   gap: 15px; /* Space between reaction and comment links */
   padding: 10px 32px; /* Align with post-header */
-  margin-left: 36px;
+  margin-left: 28px;
 }
 
 /* Base styles for both reaction & comment links */

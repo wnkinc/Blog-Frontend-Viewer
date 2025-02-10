@@ -26,9 +26,12 @@
         />
         <div class="author-info">
           <span class="author-name">
-            <a href="/user/<%= post.author.id %>"
-              ><%= post.author.username %></a
+            <button
+              data-author="<%= post.author.username %>"
+              class="author-filter"
             >
+              <%= post.author.username %>
+            </button>
           </span>
           <span class="post-date">
             <%= new Date(post.createdAt).toLocaleDateString() %>
