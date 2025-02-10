@@ -3,50 +3,52 @@ document.addEventListener("DOMContentLoaded", function () {
   const postsContainer = document.querySelector(".feed");
   const posts = Array.from(document.querySelectorAll(".feed-post"));
 
-  // Function to filter and display posts
-  function filterPosts(filterType, value = null) {
+  // Function to sort posts while keeping them all visible
+  function sortPosts(sortType, value = null) {
     let sortedPosts = [...posts];
 
-    if (filterType === "relevant") {
-      // Filter only posts by "wesleyklaassen"
-      sortedPosts = sortedPosts.filter(
-        (post) => post.getAttribute("data-author") === "wesleynklaassen"
-      );
-    } else if (filterType === "latest") {
+    if (sortType === "relevant") {
+      // Move "wesleyklaassen" posts to the top but keep others
+      sortedPosts.sort((a, b) => {
+        const isARelevant = a.getAttribute("data-author") === "wesleynklaassen";
+        const isBRelevant = b.getAttribute("data-author") === "wesleynklaassen";
+        return isBRelevant - isARelevant; // Sort relevant ones first
+      });
+    } else if (sortType === "latest") {
       // Sort by date (most recent first)
       sortedPosts.sort(
         (a, b) =>
           new Date(b.getAttribute("data-date")) -
           new Date(a.getAttribute("data-date"))
       );
-    } else if (filterType === "top") {
+    } else if (sortType === "top") {
       // Sort by reactions count (highest first)
       sortedPosts.sort(
         (a, b) =>
           Number(b.getAttribute("data-reactions")) -
           Number(a.getAttribute("data-reactions"))
       );
-    } else if (filterType === "author" && value) {
-      // Filter posts by a specific author
-      sortedPosts = sortedPosts.filter(
-        (post) => post.getAttribute("data-author") === value
-      );
+    } else if (sortType === "author" && value) {
+      // Move selected author's posts to the top but keep all visible
+      sortedPosts.sort((a, b) => {
+        const isASelected = a.getAttribute("data-author") === value;
+        const isBSelected = b.getAttribute("data-author") === value;
+        return isBSelected - isASelected; // Sort selected author's posts first
+      });
     }
 
-    // Clear the container and re-add sorted posts
-    postsContainer.innerHTML = "";
+    // Reorder posts in the container without hiding any
     sortedPosts.forEach((post) => postsContainer.appendChild(post));
   }
 
   // Tab click event listener
   tabs.forEach((tab) => {
     tab.addEventListener("click", function () {
-      // Remove active class from all tabs
       tabs.forEach((t) => t.classList.remove("active"));
       this.classList.add("active");
 
-      const filter = this.getAttribute("data-filter");
-      filterPosts(filter);
+      const sortType = this.getAttribute("data-filter");
+      sortPosts(sortType);
     });
   });
 
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault(); // Prevent navigation
 
       const author = this.getAttribute("data-author");
-      filterPosts("author", author);
+      sortPosts("author", author);
     });
   });
 });
