@@ -79,7 +79,11 @@
       </div>
 
       <div class="read-time">
-        <p class="mins-read">2 min read</p>
+        <% var wordsPerMinute = 200; var contentText = post.content ?
+        post.content.trim() : ""; var wordCount = contentText.length === 0 ? 0 :
+        contentText.split(/\s+/).length; var readTime = Math.max(1,
+        Math.round(wordCount / wordsPerMinute)); %>
+        <p class="mins-read"><%= readTime %> min read</p>
         <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 21l-7-5-7 5V5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v16z" />
         </svg>

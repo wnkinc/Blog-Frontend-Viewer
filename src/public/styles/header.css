@@ -40,7 +40,6 @@
 
 .sign-in-link a:hover {
   color: #000 !important;
-  text-decoration: underline;
 }
 
 .nav-links {
@@ -55,10 +54,6 @@
 li a {
   color: #666;
   text-decoration: none;
-}
-
-.nav-links li a:hover {
-  color: #6a057c; /* Darker blue on hover */
 }
 
 .search-bar {
@@ -82,7 +77,7 @@ li a {
 .search-bar input:focus {
   color: #000;
   outline: none; /* Remove default outline*/
-  border-color: #000; /* Blue border on focus */
+  border-color: #2779a7; /* Blue border on focus */
   border-width: 1px; /* Slightly thicker border */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent with the button shadow */
   box-sizing: border-box;
@@ -110,21 +105,20 @@ li a {
 .btn-create-account {
   display: inline-block;
   background-color: transparent; /* No solid background */
-  color: #000; /* Blue text color */
+  color: #2779a7; /* Blue text color */
   padding: 9.5px 16px; /* Padding for the button */
   font-size: 14px; /* Font size */
   text-decoration: none; /* Remove underline */
-  border: 1px solid #000; /* Blue outline */
+  border: 1px solid #2779a7; /* Blue outline */
   border-radius: 7px; /* Rounded corners */
   white-space: nowrap;
   transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-links .btn-create-account:hover {
-  background-color: #000; /* Use text color as background */
+  background-color: #2779a7; /* Use text color as background */
   color: #ffffff; /* White text */
-  border-color: #000; /* Keep border same as background */
-  text-decoration: underline; /* Underline text */
+  border-color: #2779a7; /* Keep border same as background */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 

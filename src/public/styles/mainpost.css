@@ -120,6 +120,30 @@ hr {
   padding-top: 0;
   font-size: 1.1rem;
   line-height: 1.6;
+
+  word-wrap: break-word; /* Ensures text breaks properly */
+  white-space: normal; /* Allows text wrapping */
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.post-content pre,
+.post-content code {
+  white-space: pre-wrap; /* Ensures code blocks wrap properly */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.post-content img,
+.post-content iframe,
+.post-content table {
+  max-width: 100%; /* Prevents large elements from overflowing */
+  height: auto;
+  display: block;
+}
+
+.post-content a {
+  word-break: break-all; /* Ensures long URLs break properly */
 }
 
 /* Optional: If the image is inside `.post-content`, make sure it follows the same rule */
@@ -127,7 +151,6 @@ hr {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 1rem auto;
 }
 
 .post-cover img {
