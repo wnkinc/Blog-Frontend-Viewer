@@ -4,10 +4,12 @@
     <!-- <div class="notification-badge">!</div> -->
 
     <p>
-      <strong>Skip</strong> creating an account and sign in as
+      Skip creating an account and sign in as
       <strong>RandomPanda</strong>!
     </p>
-    <img src="/imgs/randompanda.png" alt="RandomPanda" class="panda-image" />
+    <a href="<%= process.env.BLOG_API_BASE_URL %>/auth/guest"
+      ><img src="/imgs/randompanda.png" alt="RandomPanda" class="panda-image"
+    /></a>
     <a
       href="<%= process.env.BLOG_API_BASE_URL %>/auth/guest"
       class="panda-button"

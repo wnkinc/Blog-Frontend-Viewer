@@ -180,7 +180,7 @@ hr {
 }
 
 .mainpost a {
-  color: #0077ff;
+  color: #2779a7;
   text-decoration: none;
 }
 
@@ -205,7 +205,7 @@ hr {
 }
 
 .mainpost article blockquote {
-  border-left: 4px solid #0077ff;
+  border-left: 4px solid #2779a7;
   padding: 0.5rem 1rem;
   font-style: italic;
   color: #444;
@@ -279,8 +279,8 @@ hr {
   padding: 10px;
   width: 100%; /* Ensures button matches textarea width */
   background-color: white;
-  color: #2779a7;
-  border: 1px solid #2779a7;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -288,20 +288,22 @@ hr {
 .subscribe-button {
   padding: 10px;
   background-color: white;
-  color: #2779a7;
-  border: 1px solid #2779a7;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .subscribe-button:hover {
   background-color: #2779a7;
+  border: 1px solid #2779a7;
   color: white;
 }
 
 .comment-form button:hover,
 .reply-form button:hover {
   background-color: #2779a7;
+  border: 1px solid #2779a7;
   color: white;
 }
 
