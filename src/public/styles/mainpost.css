@@ -604,88 +604,44 @@ hr {
     flex-grow: 1;
   }
 
-  .ad {
+  .profile-box {
     width: 350px;
     height: 350px;
-    background-color: #ecd06f;
-    border-radius: 7px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc; /* Light gray border */
-    /* Adds spacing inside */
-
-    /* Prevents padding from increasing size */
-    box-sizing: border-box;
-
-    /* Center everything */
+    border: 2px solid #e0e0e0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-  }
-
-  .ad-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 0 !important;
+    justify-content: center;
+
+    margin-bottom: 10px;
+    box-sizing: border-box;
   }
 
-  .ad-image {
-    max-width: 80px; /* Adjust the image size */
-    height: auto;
-    border-radius: 50%; /* Makes the image circular if desired */
-    float: left; /* Aligns image to the left */
-    margin-right: 10px; /* Adds space between the image and text */
+  /* Large Profile Picture */
+  .profile-pic-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
   }
 
-  /* Apply previous styles to new class names */
-  .ad-line {
-    display: block;
-    text-align: left; /* Ensure left alignment */
+  /* Username & Bio */
+  .username {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 10px 0;
   }
 
-  .ad-line-1 {
-    font-weight: bold; /* From .ad-highlight */
-    color: #000;
-    margin-left: 0px;
-    text-align: center;
-  }
-
-  .ad-line-2 {
-    color: #d9534f; /* From .ad-secondary */
-    margin-left: 15px;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .ad-line-3 {
-    color: #000; /* From .ad-emphasis */
-
-    margin-left: 30px;
-    text-align: center;
-    font-style: italic;
-  }
-
-  /* Button Styling */
-  .ad-button {
-    display: inline-block;
-    background-color: #d9534f; /* Blue button */
-    color: white;
-    padding: 10px 16px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    margin: 0 20px;
-  }
-
-  .ad-button:hover {
-    background-color: #ae423e; /* Darker blue on hover */
+  .bio {
+    font-size: 1rem;
+    color: #666;
+    padding: 0 10px;
   }
 }
 

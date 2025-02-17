@@ -1,21 +1,11 @@
-<div class="ad">
-  <p class="ad-title">
-    <span class="ad-line ad-line-1">
-      Yes, that’s <strong>OAuth 2.0</strong> authentication with email
-      verification for account creation!
-    </span>
-
-    <span class="ad-line ad-line-2">
-      Skip all that and just sign in here as RandomPanda!
-    </span>
-    <img src="/imgs/randompanda.png" alt="RandomPanda" class="ad-image" />
-    <span class="ad-line ad-line-3">
-      We both know you weren’t going to create an account anyway!
-    </span>
-  </p>
-  <a href="<%= process.env.BLOG_API_BASE_URL %>/auth/guest" class="ad-button"
-    >Fine, I'll Sign In 😏</a
-  >
+<div class="profile-box">
+  <img
+    src="<%= post.author.profilePic || '/default-profile.png' %>"
+    alt="<%= post.author.username %>'s profile picture"
+    class="profile-pic-large"
+  />
+  <h2 class="username"><%= post.author.username %></h2>
+  <p class="bio"><%= post.author.bio %></p>
 </div>
 <img class="balloon-box" src="/imgs/box.png" alt="Logo box" />
 <div id="balloon-column"></div>
