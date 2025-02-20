@@ -573,7 +573,7 @@ hr {
   color: #555;
 }
 
-@media (min-width: 1290px) {
+@media (min-width: 1240px) {
   .container {
     align-self: center;
     max-width: 1240px;
@@ -605,6 +605,7 @@ hr {
   }
 
   .profile-box {
+    margin-top: 10px;
     width: 350px;
     height: 350px;
     border: 2px solid #e0e0e0;

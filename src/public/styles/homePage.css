@@ -439,7 +439,8 @@ ul.links {
 
 @media (min-width: 1240px) {
   .container {
-    max-width: 1350px;
+    width: 100%;
+    max-width: 1240px;
     align-self: center;
   }
 
