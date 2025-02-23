@@ -308,10 +308,10 @@
 
 .sprite-animation {
   display: inline-block;
-  width: 120px; /* Intermediate size */
-  height: 67.5px; /* Calculated to maintain ratio (120 * (45 / 80)) */
+  width: 190px; /* Slightly smaller width */
+  height: 107px; /* 190 * (45 / 80) to maintain ratio */
   background: url("/imgs/output.png") no-repeat 0 0;
-  background-size: 11520px 67.5px; /* Adjust background size proportionally */
+  background-size: 18240px 107px; /* Scaled proportionally */
 }
 
 #sprite {
@@ -334,7 +334,7 @@ ul.links {
 
 /* Style the social media links */
 .links-section a {
-  font-size: 1.4rem; /* Increase size of social icons */
+  font-size: 1.8rem; /* Increase size of social icons */
   margin-right: 20px; /* Add spacing between icons */
   display: inline-block;
   color: #000;
