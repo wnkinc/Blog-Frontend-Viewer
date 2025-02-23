@@ -471,7 +471,7 @@ ul.links {
     flex-grow: 1;
   }
 
-  .ad {
+  .pad {
     width: 350px;
     height: 350px;
     background-color: #ecd06f;
@@ -489,7 +489,7 @@ ul.links {
     justify-content: center;
   }
 
-  .ad-title {
+  .pad-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -499,7 +499,7 @@ ul.links {
     margin-top: 0 !important;
   }
 
-  .ad-image {
+  .pad-image {
     max-width: 80px; /* Adjust the image size */
     height: auto;
     border-radius: 50%; /* Makes the image circular if desired */
@@ -508,26 +508,26 @@ ul.links {
   }
 
   /* Apply previous styles to new class names */
-  .ad-line {
+  .pad-line {
     display: block;
     text-align: left; /* Ensure left alignment */
   }
 
-  .ad-line-1 {
+  .pad-line-1 {
     font-weight: bold; /* From .ad-highlight */
     color: #000;
 
     text-align: center;
   }
 
-  .ad-line-2 {
+  .pad-line-2 {
     color: #2779a7; /* From .ad-secondary */
 
     text-align: center;
     font-weight: 600;
   }
 
-  .ad-line-3 {
+  .pad-line-3 {
     color: #000; /* From .ad-emphasis */
 
     text-align: center;
@@ -535,7 +535,7 @@ ul.links {
   }
 
   /* Button Styling */
-  .ad-button {
+  .pad-button {
     display: inline-block;
     color: #000;
     padding: 10px 16px;
@@ -550,7 +550,7 @@ ul.links {
     margin: 0 20px;
   }
 
-  .ad-button:hover {
+  .pad-button:hover {
     background-color: #2779a7; /* Darker blue on hover */
     border: 1px solid #2779a7;
     color: white;
