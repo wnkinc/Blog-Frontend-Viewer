@@ -2,30 +2,19 @@
   <nav class="navbar">
     <div class="logo-search">
       <a href="/" class="logo"><img src="/imgs/WK.png" alt="wk logo" /></a>
-      <div class="search-bar">
-        <input
-          type="text"
-          placeholder="Search articles..."
-          aria-label="Search articles"
-          id="searchInput"
-        />
-        <button
-          type="button"
-          class="clear-btn"
-          aria-label="Clear"
-          onclick="clearSearch()"
-        >
-          &times;
-        </button>
+      <!-- New container wrapping the search bar and results -->
+      <div class="search-container">
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search articles..."
+            aria-label="Search articles"
+            id="searchInput"
+          />
+        </div>
+        <div id="search-results"></div>
       </div>
     </div>
-    <script>
-      function clearSearch() {
-        const input = document.getElementById("searchInput");
-        input.value = ""; // Clear the input field
-        input.focus(); // Focus back on the input field
-      }
-    </script>
 
     <ul class="nav-links">
       <li class="sign-in-link">

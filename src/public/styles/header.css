@@ -65,10 +65,10 @@ li a {
 
 .search-bar input {
   width: 100%;
-  padding: 9.5px 12px;
+  padding: 6.5px 12px;
   border: 1px solid #ccc;
   border-radius: 7px;
-  font-size: 14px;
+  font-size: 18px;
   transition: all 0.3s ease;
   color: #666;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle default shadow */
@@ -126,6 +126,56 @@ li a {
   flex: 1;
   display: flex;
   align-items: center;
+}
+
+/* Container for search bar and results */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Style for the search results */
+#search-results {
+  position: absolute;
+  top: 100%; /* Directly below the search bar */
+  left: 0;
+  width: 100%; /* Matches the search bar width */
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none; /* Remove the top border to blend with the search bar */
+  z-index: 100; /* Make sure it appears above other elements */
+  max-height: 300px; /* Optional: limit height and allow scrolling */
+  overflow-y: auto; /* Optional: enable vertical scrolling if results overflow */
+  border-radius: 0 0 7px 7px;
+}
+
+.search-result * {
+  margin: 0;
+  color: #333;
+}
+
+.search-result h3 {
+  margin-left: 20px;
+}
+
+/* Optional: Style for each search result */
+.search-result {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  text-decoration: none; /* Remove default underline */
+  color: inherit; /* Keep text color consistent */
+  transition: background 0.2s ease-in-out;
+}
+
+.search-result:hover {
+  background: #e4e3e3; /* Light background on hover */
+}
+
+.search-result:last-child {
+  border-bottom: none;
 }
 
 @media (min-width: 1240px) {
