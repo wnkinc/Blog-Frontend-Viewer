@@ -40,7 +40,9 @@ searchInput.addEventListener("input", async (event) => {
 });
 
 searchInput.addEventListener("blur", () => {
-  resultsContainer.style.display = "none"; // Hide results on blur
+  setTimeout(() => {
+    resultsContainer.style.display = "none"; // Hide results after delay
+  }, 150); // Adjust delay time (milliseconds)
 });
 
 searchInput.addEventListener("focus", () => {
