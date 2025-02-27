@@ -147,11 +147,24 @@ li a {
   max-height: 300px; /* Optional: limit height and allow scrolling */
   overflow-y: auto; /* Optional: enable vertical scrolling if results overflow */
   border-radius: 0 0 7px 7px;
+  display: none; /* Hide results by default */
 }
 
 .search-result * {
   margin: 0;
   color: #333;
+}
+
+.search-result p {
+  font-size: 14px;
+  color: #666;
+}
+
+.search-result small {
+  font-size: 14px;
+  color: #333;
+  margin-right: 20px;
+  white-space: nowrap;
 }
 
 .search-result h3 {
@@ -171,7 +184,7 @@ li a {
 }
 
 .search-result:hover {
-  background: #e4e3e3; /* Light background on hover */
+  background: #f0f0f0; /* Light background on hover */
 }
 
 .search-result:last-child {

@@ -494,7 +494,7 @@ ul.links {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-top: 0 !important;
   }

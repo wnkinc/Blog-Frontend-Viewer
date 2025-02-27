@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sortType === "relevant") {
       // Move "wesleyklaassen" posts to the top but keep others
       sortedPosts.sort((a, b) => {
-        const isARelevant = a.getAttribute("data-author") === "wesleynklaassen";
-        const isBRelevant = b.getAttribute("data-author") === "wesleynklaassen";
+        const isARelevant = a.getAttribute("data-author") === "wk";
+        const isBRelevant = b.getAttribute("data-author") === "wk";
         return isBRelevant - isARelevant; // Sort relevant ones first
       });
     } else if (sortType === "latest") {

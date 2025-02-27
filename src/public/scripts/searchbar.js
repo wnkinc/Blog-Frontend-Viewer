@@ -6,6 +6,10 @@ const index = client.initIndex("posts");
 const searchInput = document.getElementById("searchInput");
 const resultsContainer = document.getElementById("search-results");
 
+function stripHTML(html) {
+  return html.replace(/<\/?[^>]+(>|$)/g, ""); // Removes all HTML tags
+}
+
 searchInput.addEventListener("input", async (event) => {
   const query = event.target.value.trim();
   console.log("Search query:", query);
@@ -19,16 +23,26 @@ searchInput.addEventListener("input", async (event) => {
     resultsContainer.innerHTML = hits
       .map(
         (hit) => `
-            <a href="/post/${hit.slug}" class="search-result">
-              <h3>${hit.title}</h3>
-              <p>${hit.content.slice(0, 100)}...</p>
-              <small>By ${hit.author}</small>
-            </a>
-          `
+        <a href="/post/${hit.slug}" class="search-result">
+          <h3>${
+            hit.title.length > 35 ? hit.title.slice(0, 35) + "..." : hit.title
+          }</h3>
+          <p>${stripHTML(hit.content).slice(0, 70)}...</p>
+          <small>By ${hit.author}</small>
+        </a>
+      `
       )
       .join("");
   } catch (error) {
     console.error("Algolia search error:", error);
     resultsContainer.innerHTML = "<p>Search error</p>";
   }
+});
+
+searchInput.addEventListener("blur", () => {
+  resultsContainer.style.display = "none"; // Hide results on blur
+});
+
+searchInput.addEventListener("focus", () => {
+  resultsContainer.style.display = "block"; // Show results again when clicked
 });
