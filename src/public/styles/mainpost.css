@@ -379,9 +379,21 @@ hr {
 }
 
 .comment-content {
+  font-family: Arial, sans-serif;
   font-size: 15px;
+  line-height: 1.6;
   margin-top: 15px;
   margin-bottom: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+pre.comment-content {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit; /* Inherit the font set above */
 }
 
 .reaction-link,
